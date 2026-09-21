@@ -1,0 +1,60 @@
+syntax = "proto3";
+// Storage types give structure to the persisted tree of domain payloads:
+// envelopes carry shared record metadata, references connect records, and
+// root-level bookkeeping supports ID allocation and recoverable publication.
+// These messages describe persistence, not the task/project domain fields.
+package factory.storage.v1;
+import "google/protobuf/timestamp.proto";
+
+// Common on-disk wrapper for every persisted entity record, including the root.
+// domain_type selects the generated domain message encoded in payload.
+// Lifecycle fields are server-owned; taint applies only to root/project records.
+message RecordEnvelope {
+  optional uint64 id = 1;
+  optional string name = 2;
+  reserved 3;
+  reserved "references";
+  optional string domain_type = 4;
+  optional bytes payload = 5;
+  RecordDependencies depends_on = 6;
+  google.protobuf.Timestamp created_at = 7;
+  google.protobuf.Timestamp modified_at = 8;
+  optional bool timestamp_tainted = 9;
+}
+
+// Explicit dependency paths: entry zero identifies self; the remaining entries
+// reference other records. Ownership supplies the parent dependency implicitly.
+message RecordDependencies {
+  repeated string paths = 1;
+}
+
+// Root allocation bookkeeping stored in .lifecycle.pb. high_water maps canonical
+// collection paths to their highest allocated IDs so deletion cannot reuse an ID.
+// The existing message/file names are retained for wire and layout compatibility.
+message LifecycleIndex {
+  uint32 version = 1;
+  string root_uuid = 2;
+  map<string, uint64> high_water = 3;
+  reserved 4;
+  reserved "deletions";
+}
+
+// Durable redo intent in .factory-transactions/pending.pb, written after candidate
+// validation and before publishing related record/project/index files. Replayed
+// on reopen after interruption and removed after publication, not retained history.
+message PendingTransaction {
+  uint32 version = 1;
+  string root_uuid = 2;
+  repeated FileChange files = 3;
+  repeated string create_directories = 4;
+  repeated string remove_directories = 5;
+}
+
+// One file operation in PendingTransaction. before_sha256 checks the expected
+// prior bytes (absent for creation); after contains replacement bytes (absent for
+// deletion). Recovery accepts already-applied bytes and rejects conflicting edits.
+message FileChange {
+  string path = 1;
+  optional string before_sha256 = 2;
+  optional bytes after = 3;
+}

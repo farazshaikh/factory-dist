@@ -1,0 +1,377 @@
+syntax = "proto3";
+package factory.persistence.v1;
+import "google/protobuf/struct.proto";
+
+message DomainAcceptanceDecision {
+  optional bool accepted = 1;
+  optional string rationale = 2;
+  optional DomainVerificationProvenance provenance = 3;
+}
+
+message DomainAgent_skills_Value {
+  repeated string items = 1;
+}
+
+message DomainAgent {
+  optional string name = 1;
+  optional string model = 2;
+  optional string persona = 3;
+  optional DomainAgent_skills_Value skills = 4;
+}
+
+message DomainCollection {
+  optional string title = 1;
+}
+
+message DomainCommitReference {
+  optional string sha = 1;
+}
+
+message DomainCompetition {
+  optional string description = 1;
+}
+
+message DomainCompletionReceipt {
+  optional string kind = 1;
+  optional DomainGitHubRepository repository = 2;
+  optional DomainCommitReference commit = 3;
+  optional DomainCommitReference observed_head = 4;
+  optional string verified_at = 5;
+  optional string basis_hash = 6;
+  optional DomainGitRepository git_repository = 7;
+  optional string git_directory = 8;
+  optional int64 basis_version = 9;
+}
+
+message DomainCriterion {
+  optional string outcome = 1;
+}
+
+message DomainCriterionResult {
+  optional string verdict = 1;
+  optional string observation = 2;
+}
+
+message DomainDecision {
+  optional string description = 1;
+}
+
+message DomainDesignNote {
+  optional string description = 1;
+}
+
+message DomainDevelopment {
+  optional string description = 1;
+}
+
+message DomainDocument {
+  optional string description = 1;
+}
+
+message DomainEncryptedSecretValue {
+  optional int64 format_version = 1;
+  optional string store_uuid = 2;
+  optional string encryption_key_id = 3;
+  optional string suite = 4;
+  optional bytes wrapped_key = 5;
+  optional bytes nonce = 6;
+  optional bytes ciphertext = 7;
+  optional bytes tag = 8;
+  optional string dek_id = 9;
+}
+
+message DomainFactory {
+  reserved "created_at", "modified_at", "timestamp_tainted";
+  reserved 2, 3, 4;
+  optional string uuid = 1;
+}
+
+message DomainGitHubRepository {
+  optional string owner = 1;
+  optional string name = 2;
+  optional string repository_id = 3;
+  optional string completion_branch = 4;
+}
+
+message DomainGitRepository {
+  optional string path = 1;
+  optional string completion_ref = 2;
+}
+
+message DomainGoal {
+  optional string description = 1;
+}
+
+message DomainHld {
+  optional string title = 1;
+  optional string description = 2;
+  optional string revision = 3;
+}
+
+message DomainInteractionDiagram {
+  optional string description = 1;
+}
+
+message DomainIssue_criteria_Value {
+  repeated DomainCriterion items = 1;
+}
+
+message DomainIssue_phase_Value {
+  oneof selection {
+    google.protobuf.NullValue null_value = 1;
+    string value = 2;
+  }
+}
+
+message DomainIssue_links_Value {
+  repeated string items = 1;
+}
+
+message DomainIssue_todos_Value {
+  repeated DomainTodo items = 1;
+}
+
+message DomainIssue {
+  reserved "depends_on";
+  reserved 11;
+  optional string title = 1;
+  optional string description = 2;
+  optional DomainIssue_criteria_Value criteria = 3;
+  optional string implementation = 4;
+  optional string id = 5;
+  optional string kind = 6;
+  optional string status = 7;
+  optional string priority = 8;
+  optional string owner = 9;
+  optional DomainIssue_phase_Value phase = 10;
+  optional DomainIssue_links_Value links = 12;
+  optional string evidence = 13;
+  optional string acceptance_criteria = 14;
+  optional DomainIssue_todos_Value todos = 15;
+  optional DomainCompletionReceipt completion_receipt = 16;
+}
+
+message DomainLld {
+  optional string title = 1;
+  optional string description = 2;
+  optional string revision = 3;
+}
+
+message DomainPersona {
+  optional string title = 1;
+  optional string instructions = 2;
+}
+
+message DomainPhase_phase_Value {
+  oneof selection {
+    google.protobuf.NullValue null_value = 1;
+    string value = 2;
+  }
+}
+
+message DomainPhase_links_Value {
+  repeated string items = 1;
+}
+
+message DomainPhase_todos_Value {
+  repeated DomainTodo items = 1;
+}
+
+message DomainPhase {
+  reserved "depends_on";
+  reserved 9;
+  optional string title = 1;
+  optional string description = 2;
+  optional string id = 3;
+  optional string kind = 4;
+  optional string status = 5;
+  optional string priority = 6;
+  optional string owner = 7;
+  optional DomainPhase_phase_Value phase = 8;
+  optional DomainPhase_links_Value links = 10;
+  optional string evidence = 11;
+  optional string acceptance_criteria = 12;
+  optional DomainPhase_todos_Value todos = 13;
+}
+
+message DomainPlan {
+  optional string description = 1;
+}
+
+message DomainPrd {
+  optional string title = 1;
+  optional string description = 2;
+  optional string revision = 3;
+}
+
+message DomainProject {
+  optional string name = 1;
+  optional int64 schema_version = 2;
+  optional DomainGitHubRepository github_repository = 3;
+  optional DomainGitRepository git_repository = 4;
+}
+
+message DomainReference_authors_Value {
+  repeated string items = 1;
+}
+
+message DomainReference_tags_Value {
+  repeated string items = 1;
+}
+
+message DomainReference {
+  optional string item_type = 1;
+  optional string title = 2;
+  optional DomainReference_authors_Value authors = 3;
+  optional string publication = 4;
+  optional string published = 5;
+  optional string abstract_text = 6;
+  optional string url = 7;
+  optional string pdf_url = 8;
+  optional string accessed = 9;
+  optional DomainReference_tags_Value tags = 10;
+  optional string reading_status = 11;
+  optional string notes = 12;
+}
+
+message DomainRelease {
+  optional string title = 1;
+  optional string description = 2;
+  optional string status = 3;
+  optional string release_notes = 4;
+  optional string git_tag = 5;
+  optional DomainCompletionReceipt completion_receipt = 6;
+}
+
+message DomainResearch {
+  optional string description = 1;
+}
+
+message DomainResearchLink {
+  optional string title = 1;
+  optional string url = 2;
+}
+
+message DomainSecret {
+  optional DomainEncryptedSecretValue encrypted_data = 1;
+}
+
+message DomainSkill {
+  optional string title = 1;
+  optional string instructions = 2;
+}
+
+message DomainStep_criteria_Value {
+  repeated DomainCriterion items = 1;
+}
+
+message DomainStep {
+  optional string title = 1;
+  optional string description = 2;
+  optional DomainStep_criteria_Value criteria = 3;
+  optional string implementation = 4;
+}
+
+message DomainTask_criteria_Value {
+  repeated DomainCriterion items = 1;
+}
+
+message DomainTask_phase_Value {
+  oneof selection {
+    google.protobuf.NullValue null_value = 1;
+    string value = 2;
+  }
+}
+
+message DomainTask_links_Value {
+  repeated string items = 1;
+}
+
+message DomainTask_todos_Value {
+  repeated DomainTodo items = 1;
+}
+
+message DomainTask {
+  reserved "depends_on";
+  reserved 11;
+  optional string title = 1;
+  optional string description = 2;
+  optional DomainTask_criteria_Value criteria = 3;
+  optional string implementation = 4;
+  optional string id = 5;
+  optional string kind = 6;
+  optional string status = 7;
+  optional string priority = 8;
+  optional string owner = 9;
+  optional DomainTask_phase_Value phase = 10;
+  optional DomainTask_links_Value links = 12;
+  optional string evidence = 13;
+  optional string acceptance_criteria = 14;
+  optional DomainTask_todos_Value todos = 15;
+  optional DomainCompletionReceipt completion_receipt = 16;
+}
+
+message DomainTeam {
+  optional string description = 1;
+}
+
+message DomainTodo {
+  optional string id = 1;
+  optional string title = 2;
+  optional string status = 3;
+  optional string evidence = 4;
+  optional string description = 5;
+  optional string acceptance_criteria = 6;
+}
+
+message DomainVerificationProvenance {
+  optional string reporter = 1;
+  optional string method = 2;
+  optional string recorded_at = 3;
+}
+
+message DomainVerificationReport_results_Value {
+  repeated DomainCriterionResult items = 1;
+}
+
+message DomainVerificationReport {
+  optional string basis = 1;
+  optional DomainVerificationReport_results_Value results = 2;
+  optional DomainVerificationProvenance provenance = 3;
+}
+
+message DomainWiki_phase_Value {
+  oneof selection {
+    google.protobuf.NullValue null_value = 1;
+    string value = 2;
+  }
+}
+
+message DomainWiki_links_Value {
+  repeated string items = 1;
+}
+
+message DomainWiki_todos_Value {
+  repeated DomainTodo items = 1;
+}
+
+message DomainWiki {
+  reserved "depends_on";
+  reserved 9;
+  optional string description = 1;
+  optional string title = 2;
+  optional string id = 3;
+  optional string kind = 4;
+  optional string status = 5;
+  optional string priority = 6;
+  optional string owner = 7;
+  optional DomainWiki_phase_Value phase = 8;
+  optional DomainWiki_links_Value links = 10;
+  optional string evidence = 11;
+  optional string acceptance_criteria = 12;
+  optional DomainWiki_todos_Value todos = 13;
+}
+
+message DomainWorkflow {
+  optional string description = 1;
+}

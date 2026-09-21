@@ -1,0 +1,1492 @@
+{
+  "openapi": "3.2.0",
+  "info": {
+    "title": "Factory plain domain types",
+    "version": "0.2.0",
+    "description": "AGENT CHANGE POLICY: Never change anything in this file without first consulting the user and obtaining explicit approval for the proposed changes. This includes additions, removals, renames, constraints, annotations, formatting and automated rewrites. Do not infer approval from a broader implementation task. Before proposing or editing domain fields, read the storage types in crates/factory-types/record.proto and the ownership rules in crates/factory-types/fslayout.json. Check whether the requested functionality already belongs to RecordEnvelope, RecordDependencies, LifecycleIndex, PendingTransaction or FileChange. Do not duplicate storage identity, common metadata, dependencies, lifecycle timestamps, allocation counters, transaction recovery or path-derived ownership in domain payloads. Add a domain field only for distinct domain meaning with a concrete consumer; explain that distinction when requesting approval. Existing work-tracking slug IDs are not a template for adding redundant IDs to new domain types. Numeric Factory identity remains in the record envelope. Agent persona and skills belong to DomainAgent and supply derived construction dependencies; work-tracking relationships are not automatically construction prerequisites. This replaces the unshipped Type Safety experiment, not the legacy application's schema."
+  },
+  "paths": {},
+  "x-factory-persistence": {
+    "version": 1,
+    "package": "factory.persistence.v1",
+    "roots": [
+      "DomainFactory",
+      "DomainProject",
+      "DomainRelease",
+      "DomainSecret",
+      "DomainEncryptedSecretValue",
+      "DomainGitHubRepository",
+      "DomainGitRepository",
+      "DomainCommitReference",
+      "DomainCompletionReceipt",
+      "DomainPhase",
+      "DomainTask",
+      "DomainIssue",
+      "DomainStep",
+      "DomainPrd",
+      "DomainHld",
+      "DomainLld",
+      "DomainCriterion",
+      "DomainCriterionResult",
+      "DomainVerificationReport",
+      "DomainVerificationProvenance",
+      "DomainAcceptanceDecision",
+      "DomainReference",
+      "DomainCollection",
+      "DomainPersona",
+      "DomainSkill",
+      "DomainAgent",
+      "DomainResearchLink",
+      "DomainResearch",
+      "DomainDevelopment",
+      "DomainTeam",
+      "DomainWorkflow",
+      "DomainGoal",
+      "DomainCompetition",
+      "DomainWiki",
+      "DomainDecision",
+      "DomainInteractionDiagram",
+      "DomainDesignNote",
+      "DomainPlan",
+      "DomainDocument",
+      "DomainTodo"
+    ]
+  },
+  "components": {
+    "schemas": {
+      "DomainFactory": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "uuid"
+        ],
+        "properties": {
+          "uuid": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "description": "Persistent Factory-root UUID v4, generated once and retained across reloads, moves and backups.",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [
+            2,
+            3,
+            4
+          ],
+          "reservedNames": [
+            "created_at",
+            "modified_at",
+            "timestamp_tainted"
+          ]
+        }
+      },
+      "DomainTitle": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 200,
+        "pattern": "\\S"
+      },
+      "DomainDescription": {
+        "type": "string",
+        "minLength": 1,
+        "maxLength": 20000,
+        "pattern": "\\S"
+      },
+      "DomainText": {
+        "type": "string",
+        "maxLength": 1000
+      },
+      "DomainStrings": {
+        "type": "array",
+        "maxItems": 200,
+        "items": {
+          "type": "string",
+          "minLength": 1,
+          "maxLength": 1000,
+          "pattern": "\\S"
+        }
+      },
+      "DomainResearch": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainDevelopment": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainTeam": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainWorkflow": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainGoal": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainCompetition": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainWiki": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          },
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 2
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "x-factory-field-number": 3
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "phase",
+              "task",
+              "issue",
+              "wiki"
+            ],
+            "x-factory-field-number": 4
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "backlog",
+              "active",
+              "blocked",
+              "done",
+              "archived"
+            ],
+            "x-factory-field-number": 5
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "normal",
+              "high",
+              "urgent"
+            ],
+            "x-factory-field-number": 6
+          },
+          "owner": {
+            "type": "string",
+            "maxLength": 1000,
+            "x-factory-field-number": 7
+          },
+          "phase": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 200,
+            "x-factory-field-number": 8
+          },
+          "links": {
+            "$ref": "#/components/schemas/DomainStrings",
+            "x-factory-field-number": 10
+          },
+          "evidence": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 11
+          },
+          "acceptance_criteria": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 12
+          },
+          "todos": {
+            "type": "array",
+            "maxItems": 200,
+            "items": {
+              "$ref": "#/components/schemas/DomainTodo"
+            },
+            "x-factory-field-number": 13
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [
+            9
+          ],
+          "reservedNames": [
+            "depends_on"
+          ]
+        }
+      },
+      "DomainDecision": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainInteractionDiagram": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainDesignNote": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainPlan": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainDocument": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainProject": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "schema_version": {
+            "type": "integer",
+            "minimum": 1,
+            "x-factory-field-number": 2
+          },
+          "github_repository": {
+            "$ref": "#/components/schemas/DomainGitHubRepository",
+            "x-factory-field-number": 3
+          },
+          "git_repository": {
+            "$ref": "#/components/schemas/DomainGitRepository",
+            "x-factory-field-number": 4
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainRelease": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["title", "status"],
+        "properties": {
+          "title": {"$ref":"#/components/schemas/DomainTitle","x-factory-field-number":1},
+          "description": {"$ref":"#/components/schemas/DomainDescription","x-factory-field-number":2},
+          "status": {"type":"string","enum":["backlog","active","blocked","done","archived"],"x-factory-field-number":3},
+          "release_notes": {"type":"string","maxLength":20000,"x-factory-field-number":4},
+          "git_tag": {"type":"string","maxLength":1024,"x-factory-field-number":5},
+          "completion_receipt": {"$ref":"#/components/schemas/DomainCompletionReceipt","x-factory-field-number":6}
+        },
+        "x-factory-proto":{"reservedNumbers":[],"reservedNames":[]}
+      },
+      "DomainSecret": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "encrypted_data"
+        ],
+        "properties": {
+          "encrypted_data": {
+            "$ref": "#/components/schemas/DomainEncryptedSecretValue",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainEncryptedSecretValue": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "format_version",
+          "store_uuid",
+          "encryption_key_id",
+          "suite",
+          "nonce",
+          "ciphertext",
+          "tag"
+        ],
+        "properties": {
+          "format_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2,
+            "x-factory-field-number": 1
+          },
+          "store_uuid": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "x-factory-field-number": 2
+          },
+          "encryption_key_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "x-factory-field-number": 3
+          },
+          "suite": {
+            "type": "string",
+            "pattern": "^(RSA-OAEP-SHA256\\+A256GCM|A256GCM)$",
+            "x-factory-field-number": 4
+          },
+          "wrapped_key": {
+            "type": "string",
+            "format": "byte",
+            "maxLength": 512,
+            "x-factory-field-number": 5
+          },
+          "nonce": {
+            "type": "string",
+            "format": "byte",
+            "maxLength": 16,
+            "x-factory-field-number": 6
+          },
+          "ciphertext": {
+            "type": "string",
+            "format": "byte",
+            "maxLength": 87384,
+            "x-factory-field-number": 7
+          },
+          "tag": {
+            "type": "string",
+            "format": "byte",
+            "maxLength": 24,
+            "x-factory-field-number": 8
+          },
+          "dek_id": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+            "x-factory-field-number": 9
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainGitRepository": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "completion_ref"
+        ],
+        "properties": {
+          "path": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "Repository directory; relative paths resolve from the Factory root parent.",
+            "x-factory-field-number": 1
+          },
+          "completion_ref": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1024,
+            "pattern": "^refs/(heads|remotes)/.+$",
+            "x-factory-field-number": 2
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainGitHubRepository": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "owner",
+          "name",
+          "repository_id",
+          "completion_branch"
+        ],
+        "properties": {
+          "owner": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9-]{0,99}$",
+            "x-factory-field-number": 1
+          },
+          "name": {
+            "type": "string",
+            "pattern": "^[A-Za-z0-9_][A-Za-z0-9_.-]{0,99}$",
+            "x-factory-field-number": 2
+          },
+          "repository_id": {
+            "type": "string",
+            "pattern": "^[1-9][0-9]{0,19}$",
+            "x-factory-field-number": 3
+          },
+          "completion_branch": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 255,
+            "pattern": "\\S",
+            "x-factory-field-number": 4
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainCommitReference": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "sha"
+        ],
+        "properties": {
+          "sha": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{40}$",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainCompletionReceipt": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "kind",
+          "verified_at",
+          "basis_hash"
+        ],
+        "description": "Server-owned observation, not a client-supplied authorization. Legacy receipts explicitly do not claim GitHub verification.",
+        "properties": {
+          "kind": {
+            "type": "string",
+            "enum": [
+              "github_verified",
+              "git_verified",
+              "legacy_unverified"
+            ],
+            "x-factory-field-number": 1
+          },
+          "repository": {
+            "$ref": "#/components/schemas/DomainGitHubRepository",
+            "x-factory-field-number": 2
+          },
+          "commit": {
+            "$ref": "#/components/schemas/DomainCommitReference",
+            "x-factory-field-number": 3
+          },
+          "observed_head": {
+            "$ref": "#/components/schemas/DomainCommitReference",
+            "x-factory-field-number": 4
+          },
+          "verified_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "description": "Observation timestamp; for legacy_unverified, classification time only.",
+            "x-factory-field-number": 5
+          },
+          "basis_hash": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "x-factory-field-number": 6
+          },
+          "git_repository": {
+            "$ref": "#/components/schemas/DomainGitRepository",
+            "x-factory-field-number": 7
+          },
+          "git_directory": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4096,
+            "description": "Observed canonical Git common directory; historical identity, not a credential.",
+            "x-factory-field-number": 8
+          },
+          "basis_version": {
+            "type": "integer",
+            "minimum": 1,
+            "maximum": 2,
+            "x-factory-field-number": 9
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainPhase": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "x-factory-field-number": 3
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "phase",
+              "task",
+              "issue",
+              "wiki"
+            ],
+            "x-factory-field-number": 4
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "backlog",
+              "active",
+              "blocked",
+              "done",
+              "archived"
+            ],
+            "x-factory-field-number": 5
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "normal",
+              "high",
+              "urgent"
+            ],
+            "x-factory-field-number": 6
+          },
+          "owner": {
+            "type": "string",
+            "maxLength": 1000,
+            "x-factory-field-number": 7
+          },
+          "phase": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 200,
+            "x-factory-field-number": 8
+          },
+          "links": {
+            "$ref": "#/components/schemas/DomainStrings",
+            "x-factory-field-number": 10
+          },
+          "evidence": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 11
+          },
+          "acceptance_criteria": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 12
+          },
+          "todos": {
+            "type": "array",
+            "maxItems": 200,
+            "items": {
+              "$ref": "#/components/schemas/DomainTodo"
+            },
+            "x-factory-field-number": 13
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [
+            9
+          ],
+          "reservedNames": [
+            "depends_on"
+          ]
+        }
+      },
+      "DomainTask": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "description"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          },
+          "criteria": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/DomainCriterion"
+            },
+            "x-factory-field-number": 3
+          },
+          "implementation": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 4
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "x-factory-field-number": 5
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "phase",
+              "task",
+              "issue",
+              "wiki"
+            ],
+            "x-factory-field-number": 6
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "backlog",
+              "active",
+              "blocked",
+              "done",
+              "archived"
+            ],
+            "x-factory-field-number": 7
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "normal",
+              "high",
+              "urgent"
+            ],
+            "x-factory-field-number": 8
+          },
+          "owner": {
+            "type": "string",
+            "maxLength": 1000,
+            "x-factory-field-number": 9
+          },
+          "phase": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 200,
+            "x-factory-field-number": 10
+          },
+          "links": {
+            "$ref": "#/components/schemas/DomainStrings",
+            "x-factory-field-number": 12
+          },
+          "evidence": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 13
+          },
+          "acceptance_criteria": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 14
+          },
+          "todos": {
+            "type": "array",
+            "maxItems": 200,
+            "items": {
+              "$ref": "#/components/schemas/DomainTodo"
+            },
+            "x-factory-field-number": 15
+          },
+          "completion_receipt": {
+            "$ref": "#/components/schemas/DomainCompletionReceipt",
+            "x-factory-field-number": 16
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [
+            11
+          ],
+          "reservedNames": [
+            "depends_on"
+          ]
+        }
+      },
+      "DomainIssue": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "description"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          },
+          "criteria": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/DomainCriterion"
+            },
+            "x-factory-field-number": 3
+          },
+          "implementation": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 4
+          },
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "x-factory-field-number": 5
+          },
+          "kind": {
+            "type": "string",
+            "enum": [
+              "phase",
+              "task",
+              "issue",
+              "wiki"
+            ],
+            "x-factory-field-number": 6
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "backlog",
+              "active",
+              "blocked",
+              "done",
+              "archived"
+            ],
+            "x-factory-field-number": 7
+          },
+          "priority": {
+            "type": "string",
+            "enum": [
+              "low",
+              "normal",
+              "high",
+              "urgent"
+            ],
+            "x-factory-field-number": 8
+          },
+          "owner": {
+            "type": "string",
+            "maxLength": 1000,
+            "x-factory-field-number": 9
+          },
+          "phase": {
+            "type": [
+              "string",
+              "null"
+            ],
+            "maxLength": 200,
+            "x-factory-field-number": 10
+          },
+          "links": {
+            "$ref": "#/components/schemas/DomainStrings",
+            "x-factory-field-number": 12
+          },
+          "evidence": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 13
+          },
+          "acceptance_criteria": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 14
+          },
+          "todos": {
+            "type": "array",
+            "maxItems": 200,
+            "items": {
+              "$ref": "#/components/schemas/DomainTodo"
+            },
+            "x-factory-field-number": 15
+          },
+          "completion_receipt": {
+            "$ref": "#/components/schemas/DomainCompletionReceipt",
+            "x-factory-field-number": 16
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [
+            11
+          ],
+          "reservedNames": [
+            "depends_on"
+          ]
+        }
+      },
+      "DomainStep": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "description",
+          "criteria",
+          "implementation"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          },
+          "criteria": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/DomainCriterion"
+            },
+            "x-factory-field-number": 3
+          },
+          "implementation": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 4
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainPrd": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "description",
+          "revision"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          },
+          "revision": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 3
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainHld": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "description",
+          "revision"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          },
+          "revision": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 3
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainLld": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "description",
+          "revision"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "description": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          },
+          "revision": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 3
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainCriterion": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "outcome"
+        ],
+        "properties": {
+          "outcome": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 4000,
+            "pattern": "\\S",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainCriterionResult": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "verdict",
+          "observation"
+        ],
+        "properties": {
+          "verdict": {
+            "type": "string",
+            "enum": [
+              "passed",
+              "failed",
+              "inconclusive"
+            ],
+            "x-factory-field-number": 1
+          },
+          "observation": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainVerificationProvenance": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "reporter",
+          "method",
+          "recorded_at"
+        ],
+        "properties": {
+          "reporter": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "method": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          },
+          "recorded_at": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 64,
+            "x-factory-field-number": 3
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainVerificationReport": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "basis",
+          "results",
+          "provenance"
+        ],
+        "properties": {
+          "basis": {
+            "type": "string",
+            "pattern": "^[0-9a-f]{64}$",
+            "x-factory-field-number": 1
+          },
+          "results": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 100,
+            "items": {
+              "$ref": "#/components/schemas/DomainCriterionResult"
+            },
+            "x-factory-field-number": 2
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/DomainVerificationProvenance",
+            "x-factory-field-number": 3
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainAcceptanceDecision": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "accepted",
+          "rationale",
+          "provenance"
+        ],
+        "properties": {
+          "accepted": {
+            "type": "boolean",
+            "x-factory-field-number": 1
+          },
+          "rationale": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          },
+          "provenance": {
+            "$ref": "#/components/schemas/DomainVerificationProvenance",
+            "x-factory-field-number": 3
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainReference": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "item_type",
+          "title",
+          "authors",
+          "publication",
+          "published",
+          "abstract_text",
+          "url",
+          "pdf_url",
+          "accessed",
+          "tags",
+          "reading_status",
+          "notes"
+        ],
+        "properties": {
+          "item_type": {
+            "type": "string",
+            "enum": [
+              "journal_article",
+              "conference_paper",
+              "preprint",
+              "book",
+              "webpage",
+              "report"
+            ],
+            "x-factory-field-number": 1
+          },
+          "title": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 1000,
+            "pattern": "\\S",
+            "x-factory-field-number": 2
+          },
+          "authors": {
+            "$ref": "#/components/schemas/DomainStrings",
+            "x-factory-field-number": 3
+          },
+          "publication": {
+            "$ref": "#/components/schemas/DomainText",
+            "x-factory-field-number": 4
+          },
+          "published": {
+            "$ref": "#/components/schemas/DomainText",
+            "x-factory-field-number": 5
+          },
+          "abstract_text": {
+            "type": "string",
+            "maxLength": 100000,
+            "x-factory-field-number": 6
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 4096,
+            "x-factory-field-number": 7
+          },
+          "pdf_url": {
+            "type": "string",
+            "maxLength": 4096,
+            "x-factory-field-number": 8
+          },
+          "accessed": {
+            "$ref": "#/components/schemas/DomainText",
+            "x-factory-field-number": 9
+          },
+          "tags": {
+            "$ref": "#/components/schemas/DomainStrings",
+            "x-factory-field-number": 10
+          },
+          "reading_status": {
+            "type": "string",
+            "enum": [
+              "unread",
+              "reading",
+              "read"
+            ],
+            "x-factory-field-number": 11
+          },
+          "notes": {
+            "type": "string",
+            "maxLength": 100000,
+            "x-factory-field-number": 12
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainResearchLink": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "url"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "url": {
+            "type": "string",
+            "maxLength": 4096,
+            "pattern": "^https?://[^\\s/?#]+(?:[/?#][^\\s]*)?$",
+            "x-factory-field-number": 2
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainPersona": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "instructions"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "instructions": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainSkill": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title",
+          "instructions"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "instructions": {
+            "$ref": "#/components/schemas/DomainDescription",
+            "x-factory-field-number": 2
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainAgent": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "name",
+          "model",
+          "persona",
+          "skills"
+        ],
+        "properties": {
+          "name": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          },
+          "model": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 2
+          },
+          "persona": {
+            "type": "string",
+            "maxLength": 4096,
+            "pattern": "^collection_010_projects/record_[0-9]{10}/collection_010_team/record_[0-9]{10}/collection_010_personas/record_[0-9]{10}$",
+            "description": "Canonical same-Team persona path; the loader resolves this domain relationship and derives its dependency edge.",
+            "x-factory-field-number": 3
+          },
+          "skills": {
+            "type": "array",
+            "maxItems": 200,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "maxLength": 4096,
+              "pattern": "^collection_010_projects/record_[0-9]{10}/collection_010_team/record_[0-9]{10}/collection_020_skills/record_[0-9]{10}$"
+            },
+            "description": "Canonical same-Team skill paths; an explicit empty list is allowed. No duplicate header dependencies are required.",
+            "x-factory-field-number": 4
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainCollection": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "title"
+        ],
+        "properties": {
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 1
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      },
+      "DomainTodo": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "id",
+          "title",
+          "status",
+          "evidence"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "minLength": 1,
+            "maxLength": 200,
+            "x-factory-field-number": 1
+          },
+          "title": {
+            "$ref": "#/components/schemas/DomainTitle",
+            "x-factory-field-number": 2
+          },
+          "status": {
+            "type": "string",
+            "enum": [
+              "backlog",
+              "active",
+              "blocked",
+              "done"
+            ],
+            "x-factory-field-number": 3
+          },
+          "evidence": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 4
+          },
+          "description": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 5
+          },
+          "acceptance_criteria": {
+            "type": "string",
+            "maxLength": 20000,
+            "x-factory-field-number": 6
+          }
+        },
+        "x-factory-proto": {
+          "reservedNumbers": [],
+          "reservedNames": []
+        }
+      }
+    }
+  }
+}

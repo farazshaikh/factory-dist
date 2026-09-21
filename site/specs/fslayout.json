@@ -1,0 +1,893 @@
+{
+    "$schema": "https://json-schema.org/draft/2020-12/schema",
+    "$id": "https://factory.invalid/types/fslayout.json",
+    "title": "Factory collection and record filesystem layout",
+    "description": "AGENT CHANGE POLICY: Never change anything in this file without first consulting the user and obtaining explicit approval for the proposed changes. This includes additions, removals, renames, constraints, annotations, formatting and automated rewrites. Do not infer approval from a broader implementation task. Decoded filesystem view beneath a Factory root. Collection names are collection_<three-digit nonzero sibling rank>_<role>, with exact names assigned by this schema. Records retain ten-digit zero-padded numeric IDs. Construction order is depth-first preorder with lexicographically sorted siblings and parents constructed before children. References may only target permitted, already-constructed records. Existing roots require explicit migration. JSON Schema enforces shape, not traversal or dependency resolution.",
+    "type": "object",
+    "required": [
+        "factory.pb",
+        "collection_010_projects"
+    ],
+    "properties": {
+        ".lifecycle.pb": {
+            "const": true,
+            "description": "Validated Protobuf allocation index containing the root identity and per-collection ID high-water marks."
+        },
+        "factory.pb": {
+            "type": "object",
+            "description": "Decoded DomainFactory inside the common RecordEnvelope. Root header identity is id 0, name Factory and self path factory.pb.",
+            "required": [
+                "uuid",
+                ".factory"
+            ],
+            "properties": {
+                "uuid": {
+                    "type": "string"
+                },
+                ".factory": {
+                    "allOf": [
+                        {
+                            "$ref": "#/$defs/record/properties/.factory"
+                        },
+                        {
+                            "required": [
+                                "depends_on"
+                            ],
+                            "properties": {
+                                "id": {
+                                    "const": 0
+                                },
+                                "name": {
+                                    "const": "Factory"
+                                },
+                                "depends_on": {
+                                    "const": [
+                                        "factory.pb"
+                                    ]
+                                }
+                            },
+                            "not": {
+                                "required": [
+                                    "references"
+                                ]
+                            }
+                        }
+                    ]
+                }
+            },
+            "additionalProperties": false
+        },
+        "sdlc.schema.json": {
+            "type": "object",
+            "description": "Retained legacy schema, not authority for the new layout."
+        },
+        "collection_010_projects": {
+            "$ref": "#/$defs/projectCollection",
+            "description": "Projects managed by Factory; each record owns its Research, Development and Team areas.",
+            "minProperties": 0
+        }
+    },
+    "additionalProperties": false,
+    "$defs": {
+        "collection": {
+            "type": "object",
+            "description": "Shared collection naming rule; specialized collections choose their record type.",
+            "propertyNames": {
+                "pattern": "^record_[0-9]{10}$"
+            }
+        },
+        "projectCollection": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/collection"
+                }
+            ],
+            "patternProperties": {
+                "^record_[0-9]{10}$": {
+                    "$ref": "#/$defs/projectDirectory"
+                }
+            },
+            "additionalProperties": false
+        },
+        "researchCollection": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/collection"
+                }
+            ],
+            "patternProperties": {
+                "^record_[0-9]{10}$": {
+                    "$ref": "#/$defs/researchDirectory"
+                }
+            },
+            "additionalProperties": false
+        },
+        "releaseCollection": {
+            "allOf": [{"$ref":"#/$defs/collection"}],
+            "patternProperties": {"^record_[0-9]{10}$":{"$ref":"#/$defs/releaseDirectory"}},
+            "additionalProperties": false
+        },
+        "phaseCollection": {
+            "allOf": [{"$ref":"#/$defs/collection"}],
+            "patternProperties": {"^record_[0-9]{10}$":{"$ref":"#/$defs/phaseDirectory"}},
+            "additionalProperties": false
+        },
+        "releaseDirectory": {
+            "allOf": [{"$ref":"#/$defs/recordDirectory"}],
+            "required":["collection_020_phases"],
+            "properties":{"collection_020_phases":{"$ref":"#/$defs/phaseCollection","description":"Phases owned and constructed after this release."}},
+            "unevaluatedProperties": false
+        },
+        "phaseDirectory": {
+            "allOf": [{"$ref":"#/$defs/recordDirectory"}],
+            "required":["collection_030_tasks","collection_040_issues"],
+            "properties":{
+                "collection_030_tasks":{"$ref":"#/$defs/leafCollection","description":"Tasks owned by this phase."},
+                "collection_040_issues":{"$ref":"#/$defs/leafCollection","description":"Issues owned by this phase."}
+            },
+            "unevaluatedProperties": false
+        },
+        "developmentCollection": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/collection"
+                }
+            ],
+            "patternProperties": {
+                "^record_[0-9]{10}$": {
+                    "$ref": "#/$defs/developmentDirectory"
+                }
+            },
+            "additionalProperties": false
+        },
+        "teamCollection": {
+            "maxProperties": 1,
+            "allOf": [
+                {
+                    "$ref": "#/$defs/collection"
+                }
+            ],
+            "patternProperties": {
+                "^record_[0-9]{10}$": {
+                    "$ref": "#/$defs/teamDirectory"
+                }
+            },
+            "additionalProperties": false
+        },
+        "workflowCollection": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/collection"
+                }
+            ],
+            "patternProperties": {
+                "^record_[0-9]{10}$": {
+                    "$ref": "#/$defs/workflowDirectory"
+                }
+            },
+            "additionalProperties": false
+        },
+        "leafCollection": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/collection"
+                }
+            ],
+            "description": "Entity or document records with no child collections.",
+            "patternProperties": {
+                "^record_[0-9]{10}$": {
+                    "$ref": "#/$defs/leafDirectory"
+                }
+            },
+            "additionalProperties": false
+        },
+        "hldCollection": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/collection"
+                }
+            ],
+            "patternProperties": {
+                "^record_[0-9]{10}$": {
+                    "$ref": "#/$defs/hldDirectory"
+                }
+            },
+            "additionalProperties": false
+        },
+        "memberCollection": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/collection"
+                }
+            ],
+            "patternProperties": {
+                "^record_[0-9]{10}$": {
+                    "$ref": "#/$defs/memberDirectory"
+                }
+            },
+            "additionalProperties": false
+        },
+        "memberDirectory": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/recordDirectory"
+                }
+            ],
+            "properties": {
+                "record.json": {
+                    "$ref": "#/$defs/memberRecord"
+                },
+                "record.pb": {
+                    "$ref": "#/$defs/memberRecord"
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "memberRecord": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/record"
+                }
+            ],
+            "required": [
+                "persona",
+                "skills"
+            ],
+            "properties": {
+                "persona": {
+                    "type": "string",
+                    "maxLength": 4096,
+                    "pattern": "^collection_010_projects/record_[0-9]{10}/collection_010_team/record_[0-9]{10}/collection_010_personas/record_[0-9]{10}$"
+                },
+                "skills": {
+                    "type": "array",
+                    "maxItems": 200,
+                    "uniqueItems": true,
+                    "items": {
+                        "type": "string",
+                        "maxLength": 4096,
+                        "pattern": "^collection_010_projects/record_[0-9]{10}/collection_010_team/record_[0-9]{10}/collection_020_skills/record_[0-9]{10}$"
+                    }
+                }
+            },
+            "description": "Agent prerequisites use canonical root-relative record paths. Persona and skills compose freely; target existence, same-Team ownership and typed Arc resolution require the loader."
+        },
+        "recordDirectory": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "required": [
+                        "record.json"
+                    ]
+                },
+                {
+                    "required": [
+                        "record.pb"
+                    ]
+                }
+            ],
+            "properties": {
+                "record.json": {
+                    "$ref": "#/$defs/record",
+                    "description": "Optional JSON import representation; new roots persist record.pb instead. Never coexist with record.pb."
+                },
+                "record.pb": {
+                    "$ref": "#/$defs/record",
+                    "description": "Canonical persisted factory.storage.v1.RecordEnvelope; this schema checks its decoded view. Payload bytes are the generated Protobuf message identified by domain_type and must match the owning collection."
+                },
+                "readme.md": {
+                    "type": "string",
+                    "description": "Optional preserved narrative, including empty placeholders."
+                }
+            }
+        },
+        "leafDirectory": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/recordDirectory"
+                }
+            ],
+            "unevaluatedProperties": false
+        },
+        "projectDirectory": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/recordDirectory"
+                }
+            ],
+            "required": [
+                "collection_020_research",
+                "collection_030_development",
+                "collection_040_releases",
+                "collection_010_team"
+            ],
+            "properties": {
+                "secretmgr": {
+                    "$ref": "#/$defs/secretDirectory",
+                    "description": "Optional project key bootstrap; public-only checkouts are valid. Private bytes are validated but never exposed as domain records."
+                },
+                "collection_020_research": {
+                    "$ref": "#/$defs/researchCollection",
+                    "description": "Project knowledge base: goals, alternatives, designs and reference documents."
+                },
+                "collection_030_development": {
+                    "$ref": "#/$defs/developmentCollection",
+                    "description": "Planning and delivery work: plans, phases, tasks and issues."
+                },
+                "collection_040_releases": {
+                    "$ref":"#/$defs/releaseCollection",
+                    "description":"Project releases, owning phases and their tasks/issues."
+                },
+                "collection_010_team": {
+                    "$ref": "#/$defs/teamCollection",
+                    "description": "Agentic team organization; team records contain member collections."
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "secretIdentity": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "root_uuid",
+                "project_path",
+                "store_uuid",
+                "generation"
+            ],
+            "properties": {
+                "root_uuid": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "project_path": {
+                    "type": "string",
+                    "pattern": "^collection_010_projects/record_[0-9]{10}$"
+                },
+                "store_uuid": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "generation": {
+                    "const": 1
+                }
+            }
+        },
+        "secretPublicKey": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "algorithm",
+                "key_id",
+                "spki_der"
+            ],
+            "properties": {
+                "algorithm": {
+                    "enum": [
+                        "RSA-OAEP-SHA256",
+                        "RSA-PSS-SHA256"
+                    ]
+                },
+                "key_id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                },
+                "spki_der": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 2048
+                }
+            }
+        },
+        "secretDirectory": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                ".publickey"
+            ],
+            "properties": {
+                "collection_010_secrets": {
+                    "$ref": "#/$defs/secretCollection",
+                    "description": "Project-owned encrypted values with stable numeric IDs and unique case-sensitive names."
+                },
+                ".publickey": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "format_version",
+                        "identity",
+                        "lifecycle",
+                        "encryption",
+                        "signing"
+                    ],
+                    "properties": {
+                        "format_version": {
+                            "const": 1
+                        },
+                        "identity": {
+                            "$ref": "#/$defs/secretIdentity"
+                        },
+                        "lifecycle": {
+                            "enum": [
+                                "bootstrap",
+                                "ready"
+                            ]
+                        },
+                        "encryption": {
+                            "$ref": "#/$defs/secretPublicKey"
+                        },
+                        "signing": {
+                            "$ref": "#/$defs/secretPublicKey"
+                        }
+                    }
+                },
+                ".encmasterkey": {
+                    "const": true,
+                    "description": "Presence marker only; actual bytes undergo separate bounded envelope validation."
+                },
+                ".encdek": {
+                    "$ref": "#/$defs/encryptedProjectDek"
+                }
+            }
+        },
+        "encryptedProjectDek": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "format_version",
+                "identity",
+                "encryption_key_id",
+                "dek_id",
+                "suite",
+                "wrapped_key"
+            ],
+            "properties": {
+                "format_version": {
+                    "const": 1
+                },
+                "identity": {
+                    "$ref": "#/$defs/secretIdentity"
+                },
+                "encryption_key_id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                },
+                "dek_id": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$"
+                },
+                "suite": {
+                    "const": "RSA-OAEP-SHA256"
+                },
+                "wrapped_key": {
+                    "type": "string",
+                    "minLength": 512,
+                    "maxLength": 512
+                }
+            }
+        },
+        "encryptedMasterEnvelope": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+                "format_version",
+                "identity",
+                "public_bundle_sha256",
+                "kdf",
+                "cipher",
+                "nonce",
+                "ciphertext",
+                "tag"
+            ],
+            "properties": {
+                "format_version": {
+                    "const": 1
+                },
+                "identity": {
+                    "$ref": "#/$defs/secretIdentity"
+                },
+                "public_bundle_sha256": {
+                    "type": "string",
+                    "pattern": "^[0-9a-f]{64}$"
+                },
+                "kdf": {
+                    "type": "object",
+                    "additionalProperties": false,
+                    "required": [
+                        "algorithm",
+                        "iterations",
+                        "salt",
+                        "output_bytes"
+                    ],
+                    "properties": {
+                        "algorithm": {
+                            "const": "PBKDF2-HMAC-SHA256"
+                        },
+                        "iterations": {
+                            "const": 600000
+                        },
+                        "salt": {
+                            "type": "string",
+                            "maxLength": 44
+                        },
+                        "output_bytes": {
+                            "const": 32
+                        }
+                    }
+                },
+                "cipher": {
+                    "const": "AES-256-GCM"
+                },
+                "nonce": {
+                    "type": "string",
+                    "maxLength": 16
+                },
+                "ciphertext": {
+                    "type": "string",
+                    "minLength": 1,
+                    "maxLength": 60000
+                },
+                "tag": {
+                    "type": "string",
+                    "maxLength": 24
+                }
+            }
+        },
+        "secretCollection": {
+            "type": "object",
+            "maxProperties": 256,
+            "patternProperties": {
+                "^record_[0-9]{10}$": {
+                    "$ref": "#/$defs/secretRecordDirectory"
+                }
+            },
+            "additionalProperties": false
+        },
+        "secretRecordDirectory": {
+            "type": "object",
+            "oneOf": [
+                {
+                    "required": [
+                        "record.pb"
+                    ]
+                },
+                {
+                    "required": [
+                        "record.json"
+                    ]
+                }
+            ],
+            "properties": {
+                "record.pb": {
+                    "$ref": "#/$defs/secretRecord"
+                },
+                "record.json": {
+                    "$ref": "#/$defs/secretRecord"
+                }
+            },
+            "additionalProperties": false
+        },
+        "secretRecord": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/record"
+                }
+            ],
+            "properties": {
+                ".factory": {
+                    "required": [
+                        "depends_on"
+                    ],
+                    "properties": {
+                        "id": {
+                            "minimum": 1
+                        },
+                        "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "maxLength": 128,
+                            "pattern": "^[A-Za-z0-9_][A-Za-z0-9_.-]{0,127}$"
+                        }
+                    }
+                }
+            }
+        },
+        "researchDirectory": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/recordDirectory"
+                }
+            ],
+            "required": [
+                "collection_010_goals",
+                "collection_030_competition",
+                "collection_040_wiki",
+                "collection_020_references",
+                "collection_050_hlds",
+                "collection_060_decisions",
+                "collection_090_workflows",
+                "collection_080_interaction_diagrams",
+                "collection_070_design_notes"
+            ],
+            "properties": {
+                "collection_010_goals": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Project objectives and desired outcomes."
+                },
+                "collection_030_competition": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Competitor research, alternatives and comparison notes."
+                },
+                "collection_040_wiki": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "General project knowledge and explanatory pages."
+                },
+                "collection_020_references": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Links to papers and other research sources, stored once as indexed reference records."
+                },
+                "collection_050_hlds": {
+                    "$ref": "#/$defs/hldCollection",
+                    "description": "High-level architecture and product designs, each owning its low-level designs."
+                },
+                "collection_060_decisions": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Design decisions and their rationale."
+                },
+                "collection_090_workflows": {
+                    "$ref": "#/$defs/workflowCollection",
+                    "description": "Workflow definitions whose child documents describe rules and skills."
+                },
+                "collection_080_interaction_diagrams": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Interaction and sequence diagrams with supporting narrative."
+                },
+                "collection_070_design_notes": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Supporting architecture notes and preserved overview documents."
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "hldDirectory": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/recordDirectory"
+                }
+            ],
+            "required": [
+                "collection_010_llds"
+            ],
+            "properties": {
+                "collection_010_llds": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Low-level designs whose owning HLD is an implicit prerequisite."
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "developmentDirectory": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/recordDirectory"
+                }
+            ],
+            "required": [
+                "collection_010_plans"
+            ],
+            "properties": {
+                "collection_010_plans": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Plans of record, sequencing and delivery scope."
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "teamDirectory": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/recordDirectory"
+                }
+            ],
+            "required": [
+                "collection_030_members",
+                "collection_010_personas",
+                "collection_020_skills"
+            ],
+            "properties": {
+                "collection_030_members": {
+                    "$ref": "#/$defs/memberCollection",
+                    "description": "Agent members with a model and references to one persona and selected skills; initialization configures BB8 as a Developer."
+                },
+                "collection_010_personas": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Reusable agent roles and working instructions, independent of assigned skills."
+                },
+                "collection_020_skills": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Reusable capabilities and instructions, freely composable with personas."
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "workflowDirectory": {
+            "allOf": [
+                {
+                    "$ref": "#/$defs/recordDirectory"
+                }
+            ],
+            "required": [
+                "collection_010_documents"
+            ],
+            "properties": {
+                "collection_010_documents": {
+                    "$ref": "#/$defs/leafCollection",
+                    "description": "Workflow rule and skill documents, each stored as its own record."
+                }
+            },
+            "unevaluatedProperties": false
+        },
+        "lifecycleTime": {
+            "type": "string",
+            "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}\\.[0-9]{3}Z$"
+        },
+        "record": {
+            "type": "object",
+            "required": [
+                ".factory"
+            ],
+            "properties": {
+                ".factory": {
+                    "type": "object",
+                    "required": [
+                        "id",
+                        "name"
+                    ],
+                    "properties": {
+                        "id": {
+                            "type": "integer",
+                            "minimum": 0,
+                            "maximum": 9999999999
+                        },
+                        "name": {
+                            "type": "string",
+                            "minLength": 1,
+                            "pattern": "\\S"
+                        },
+                        "created_at": {
+                            "$ref": "#/$defs/lifecycleTime"
+                        },
+                        "modified_at": {
+                            "$ref": "#/$defs/lifecycleTime"
+                        },
+                        "timestamp_tainted": {
+                            "type": "boolean"
+                        },
+                        "depends_on": {
+                            "type": "array",
+                            "minItems": 1,
+                            "maxItems": 201,
+                            "uniqueItems": true,
+                            "items": {
+                                "type": "string",
+                                "maxLength": 4096,
+                                "pattern": "^(factory\\.pb|collection_[0-9]{3}_[a-z][a-z0-9_]*(/record_[0-9]{10}/collection_[0-9]{3}_[a-z][a-z0-9_]*)*/record_[0-9]{10}|collection_010_projects/record_[0-9]{10}/secretmgr/collection_010_secrets/record_[0-9]{10})$"
+                            },
+                            "description": "Index zero is the canonical self record path; remaining entries reference other existing non-parent records. Omission is accepted only for legacy reads pending explicit migration; writes require this field."
+                        }
+                    },
+                    "additionalProperties": false
+                }
+            },
+            "additionalProperties": true,
+            "description": "Common identity block plus preserved existing payload fields. A legacy id field is not the new directory ID. Payload/domain validation remains separate. IDs range from 0 to 9999999999; zero is reserved for initialization placeholders; directory names use exactly 10 zero-padded digits."
+        }
+    },
+    "x-factory-domain-mappings": {
+        "collection_040_releases":{"$ref":"domaintypes.json#/components/schemas/DomainRelease"},
+        "collection_010_secrets": {
+            "$ref": "domaintypes.json#/components/schemas/DomainSecret"
+        },
+        "collection_020_research": {
+            "$ref": "domaintypes.json#/components/schemas/DomainResearch"
+        },
+        "collection_030_development": {
+            "$ref": "domaintypes.json#/components/schemas/DomainDevelopment"
+        },
+        "collection_010_team": {
+            "$ref": "domaintypes.json#/components/schemas/DomainTeam"
+        },
+        "collection_090_workflows": {
+            "$ref": "domaintypes.json#/components/schemas/DomainWorkflow"
+        },
+        "collection_010_goals": {
+            "$ref": "domaintypes.json#/components/schemas/DomainGoal"
+        },
+        "collection_030_competition": {
+            "$ref": "domaintypes.json#/components/schemas/DomainCompetition"
+        },
+        "collection_040_wiki": {
+            "$ref": "domaintypes.json#/components/schemas/DomainWiki"
+        },
+        "collection_060_decisions": {
+            "$ref": "domaintypes.json#/components/schemas/DomainDecision"
+        },
+        "collection_080_interaction_diagrams": {
+            "$ref": "domaintypes.json#/components/schemas/DomainInteractionDiagram"
+        },
+        "collection_070_design_notes": {
+            "$ref": "domaintypes.json#/components/schemas/DomainDesignNote"
+        },
+        "collection_010_plans": {
+            "$ref": "domaintypes.json#/components/schemas/DomainPlan"
+        },
+        "collection_010_documents": {
+            "$ref": "domaintypes.json#/components/schemas/DomainDocument"
+        },
+        "collection_020_references": {
+            "$ref": "domaintypes.json#/components/schemas/DomainResearchLink"
+        },
+        "collection_030_members": {
+            "$ref": "domaintypes.json#/components/schemas/DomainAgent"
+        },
+        "collection_010_personas": {
+            "$ref": "domaintypes.json#/components/schemas/DomainPersona"
+        },
+        "collection_020_skills": {
+            "$ref": "domaintypes.json#/components/schemas/DomainSkill"
+        },
+        "collection_010_projects": {
+            "$ref": "domaintypes.json#/components/schemas/DomainProject"
+        },
+        "collection_020_phases": {
+            "$ref": "domaintypes.json#/components/schemas/DomainPhase"
+        },
+        "collection_030_tasks": {
+            "$ref": "domaintypes.json#/components/schemas/DomainTask"
+        },
+        "collection_040_issues": {
+            "$ref": "domaintypes.json#/components/schemas/DomainIssue"
+        },
+        "collection_050_hlds": {
+            "$ref": "domaintypes.json#/components/schemas/DomainHld"
+        },
+        "collection_010_llds": {
+            "$ref": "domaintypes.json#/components/schemas/DomainLld"
+        }
+    },
+    "x-factory-storage": {
+        "canonical_record": "record.pb",
+        "envelope_schema": "record.proto",
+        "envelope_message": "factory.storage.v1.RecordEnvelope",
+        "payload_encoding": "Generated domain Protobuf bytes, not JSON text",
+        "json_import": "record.json is accepted exclusively for import/inspection; init never writes it",
+        "compatibility": "Field evolution and unknown-field-preserving rewrites require a separate policy; decoding alone is not domain validation"
+    },
+    "x-factory-tree-order": {
+        "collection_name_pattern": "^collection_(?!000_)[0-9]{3}_[a-z][a-z0-9_]*$",
+        "rank_scope": "Unique among sibling collections; assigned by the schema",
+        "traversal": "depth-first-preorder",
+        "sibling_comparison": "ASCII bytewise lexicographic, explicitly sorted",
+        "record_order": "Ten-digit zero-padded record IDs in ascending order",
+        "references": "Only permitted typed targets already constructed in this snapshot; reject forward, self, descendant or missing targets without loading on demand",
+        "migration": "Never rename existing roots implicitly; old unprefixed collection names are rejected"
+    },
+    "x-factory-reader": {
+        "root": ".factory",
+        "runtime_entries": [
+            ".factory.lock",
+            ".factory-write*",
+            ".factory-tmp*"
+        ],
+        "rules": [
+            "Sort sibling collections and records explicitly; construct the parent object before descending and finish each subtree before the next sibling",
+            "Resolve prerequisite paths only against already-constructed typed collection entries; do not load targets on demand",
+            "Reject symlinks and special files; bound traversal and reads",
+            "Require the directory name to equal record_ plus .factory.id formatted as exactly 10 zero-padded digits",
+            "IDs are unique within their containing collection, not globally across collections",
+            "Reject duplicate directory entries or JSON members before constructing a map",
+            "Decode the chosen record encoding before validation; reject both encodings together",
+            "Read readme.md as UTF-8 text; exclude runtime entries only at the workspace root",
+            "Domain mappings are metadata, not implicit legacy payload conversion or proof of domain validity"
+        ]
+    }
+}

@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Factory: local, agent-first software engineering. Install for Linux or macOS and explore the open specifications.">
+  <title>Factory | Install</title>
+  <link rel="stylesheet" href="site.css">
+  <script src="site.js" defer></script>
+</head>
+<body>
+  <header class="masthead">
+    <nav aria-label="Main navigation"><a href="#install">Install</a><a href="#specs">Open specs</a><a href="https://github.com/farazshaikh/factory-dist">GitHub</a></nav>
+  </header>
+  <main>
+    <section class="intro">
+      <div class="factory-line">
+        <h1>Factory</h1>
+        <div class="conveyor" aria-hidden="true">
+          <img class="package" src="box-icon.svg" alt="">
+          <img class="package" src="box-icon.svg" alt="">
+          <img class="package" src="box-icon.svg" alt="">
+          <img class="package" src="box-icon.svg" alt="">
+          <img class="package" src="box-icon.svg" alt="">
+          <img class="package" src="box-icon.svg" alt="">
+        </div>
+      </div>
+      <p class="tagline">SWE tools &amp; infrastructure for the agentic era.</p>
+      <p class="lede">Build a software organization around your ideas, with agents as your team.
+        Factory brings the knowledge, roles, and engineering discipline that help one developer lead work at a larger scale.</p>
+      <ul class="principles"><li>Local first</li><li>Minimal by design</li><li>Agent first. Human interpretable.</li></ul>
+    </section>
+    <section id="install" class="install">
+      <div class="section-heading"><h2>One command. Your workspace.</h2><span class="status">Preview / not yet published</span></div>
+      <p>Linux x86-64 and macOS. No Node.js, Rust toolchain, or hosted Factory account required.</p>
+      <div class="command"><pre><code id="install-command">curl -fsSL --proto '=https' --tlsv1.2 https://farazshaikh.github.io/factory-dist/install.sh | bash</code></pre><button id="copy-command" type="button">Copy command</button></div>
+      <p id="copy-status" role="status" aria-live="polite"></p>
+      <p class="fine-print">The command becomes available when the public release and this site are published.
+        <a href="install.sh">Inspect the installer</a> before running it.
+        Downloads are verified against release SHA-256 checksums; no sudo is used.</p>
+      <details><summary>Start a project</summary><pre><code>export PATH="$HOME/.local/bin:$PATH"
+cd /path/to/your/project
+factory init --name "My Project"
+factory serve web</code></pre><p>Open <a href="http://127.0.0.1:44440/workspace">localhost:44440/workspace</a> after starting Factory.</p></details>
+      <h3>Packages</h3>
+      <div class="table-scroll"><table><thead><tr><th>Platform</th><th>Architecture</th><th>Package</th></tr></thead><tbody>
+        <tr><td>Linux</td><td>x86-64 / glibc 2.35+</td><td><a href="https://github.com/farazshaikh/factory-dist/releases/latest/download/factory-x86_64-unknown-linux-gnu.tar.gz">Download .tar.gz</a></td></tr>
+        <tr><td>macOS 12+</td><td>Apple Silicon</td><td><a href="https://github.com/farazshaikh/factory-dist/releases/latest/download/factory-aarch64-apple-darwin.tar.gz">Download .tar.gz</a></td></tr>
+        <tr><td>macOS 12+</td><td>Intel</td><td><a href="https://github.com/farazshaikh/factory-dist/releases/latest/download/factory-x86_64-apple-darwin.tar.gz">Download .tar.gz</a></td></tr>
+      </tbody></table></div>
+      <p class="fine-print">Release candidates are not Apple-notarized. macOS may require explicit approval in Privacy &amp; Security.
+        <a href="https://github.com/farazshaikh/factory-dist/releases/latest/download/SHA256SUMS">Release checksums</a></p>
+    </section>
+    <section class="in-action"><div class="section-heading"><h2>Factory in action</h2><span>Research / planning / execution</span></div>
+      <img src="factory.png" alt="Factory's task workspace alongside a coding assistant in VS Code" width="2560" height="1440" loading="lazy">
+    </section>
+    <section id="specs" class="specs"><h2>Closed source. Open specifications.</h2>
+      <p>Factory's implementation stays private. Its interface and storage specifications
+        are the integration surface: inspect the contracts, understand your data, and connect your tools.</p>
+      <ul class="spec-links">
+        <li><a href="specs/openapi.json">HTTP API / OpenAPI</a></li>
+        <li><a href="specs/domaintypes.json">Domain types / JSON Schema</a></li>
+        <li><a href="specs/fslayout.json">Repository layout</a></li>
+        <li><a href="specs/record.proto">Record envelope / Protobuf</a></li>
+        <li><a href="specs/proto/persistence/catalog.proto">Domain records / Protobuf</a></li>
+        <li><a href="specs/proto/persistence/constraints.json">Persistence constraints</a></li>
+      </ul>
+      <p class="fine-print">Specification licensing and binary distribution terms are pending owner approval.
+        Availability of a specification does not grant a license to Factory's implementation.</p>
+    </section>
+  </main>
+  <footer><span>Factory / software engineering, together.</span><span>Local workspace. No telemetry on this site.</span></footer>
+</body>
+</html>

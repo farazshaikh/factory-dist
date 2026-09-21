@@ -1,0 +1,1355 @@
+[
+  {
+    "path": "#/components/schemas/DomainAcceptanceDecision",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainAcceptanceDecision",
+    "keyword": "required",
+    "value": [
+      "accepted",
+      "rationale",
+      "provenance"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainAgent",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainAgent",
+    "keyword": "required",
+    "value": [
+      "name",
+      "model",
+      "persona",
+      "skills"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainAgent/properties/persona",
+    "keyword": "maxLength",
+    "value": 4096,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainAgent/properties/persona",
+    "keyword": "pattern",
+    "value": "^collection_010_projects/record_[0-9]{10}/collection_010_team/record_[0-9]{10}/collection_010_personas/record_[0-9]{10}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainAgent/properties/skills",
+    "keyword": "maxItems",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainAgent/properties/skills",
+    "keyword": "uniqueItems",
+    "value": true,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainAgent/properties/skills/items",
+    "keyword": "maxLength",
+    "value": 4096,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainAgent/properties/skills/items",
+    "keyword": "pattern",
+    "value": "^collection_010_projects/record_[0-9]{10}/collection_010_team/record_[0-9]{10}/collection_020_skills/record_[0-9]{10}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCollection",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCollection",
+    "keyword": "required",
+    "value": [
+      "title"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCommitReference",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCommitReference",
+    "keyword": "required",
+    "value": [
+      "sha"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCommitReference/properties/sha",
+    "keyword": "pattern",
+    "value": "^[0-9a-f]{40}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompetition",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt",
+    "keyword": "required",
+    "value": [
+      "kind",
+      "verified_at",
+      "basis_hash"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt/properties/basis_hash",
+    "keyword": "pattern",
+    "value": "^[0-9a-f]{64}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt/properties/basis_version",
+    "keyword": "minimum",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt/properties/basis_version",
+    "keyword": "maximum",
+    "value": 2,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt/properties/git_directory",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt/properties/git_directory",
+    "keyword": "maxLength",
+    "value": 4096,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt/properties/kind",
+    "keyword": "enum",
+    "value": [
+      "github_verified",
+      "git_verified",
+      "legacy_unverified"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt/properties/verified_at",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCompletionReceipt/properties/verified_at",
+    "keyword": "maxLength",
+    "value": 64,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCriterion",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCriterion",
+    "keyword": "required",
+    "value": [
+      "outcome"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCriterion/properties/outcome",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCriterion/properties/outcome",
+    "keyword": "maxLength",
+    "value": 4000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCriterion/properties/outcome",
+    "keyword": "pattern",
+    "value": "\\S",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCriterionResult",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCriterionResult",
+    "keyword": "required",
+    "value": [
+      "verdict",
+      "observation"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainCriterionResult/properties/verdict",
+    "keyword": "enum",
+    "value": [
+      "passed",
+      "failed",
+      "inconclusive"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainDecision",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainDescription",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainDescription",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainDescription",
+    "keyword": "pattern",
+    "value": "\\S",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainDesignNote",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainDevelopment",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainDocument",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue",
+    "keyword": "required",
+    "value": [
+      "format_version",
+      "store_uuid",
+      "encryption_key_id",
+      "suite",
+      "nonce",
+      "ciphertext",
+      "tag"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/ciphertext",
+    "keyword": "maxLength",
+    "value": 87384,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/dek_id",
+    "keyword": "pattern",
+    "value": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/encryption_key_id",
+    "keyword": "pattern",
+    "value": "^[0-9a-f]{64}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/format_version",
+    "keyword": "minimum",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/format_version",
+    "keyword": "maximum",
+    "value": 2,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/nonce",
+    "keyword": "maxLength",
+    "value": 16,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/store_uuid",
+    "keyword": "pattern",
+    "value": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/suite",
+    "keyword": "pattern",
+    "value": "^(RSA-OAEP-SHA256\\+A256GCM|A256GCM)$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/tag",
+    "keyword": "maxLength",
+    "value": 24,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainEncryptedSecretValue/properties/wrapped_key",
+    "keyword": "maxLength",
+    "value": 512,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainFactory",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainFactory",
+    "keyword": "required",
+    "value": [
+      "uuid"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainFactory/properties/uuid",
+    "keyword": "pattern",
+    "value": "^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitHubRepository",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitHubRepository",
+    "keyword": "required",
+    "value": [
+      "owner",
+      "name",
+      "repository_id",
+      "completion_branch"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitHubRepository/properties/completion_branch",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitHubRepository/properties/completion_branch",
+    "keyword": "maxLength",
+    "value": 255,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitHubRepository/properties/completion_branch",
+    "keyword": "pattern",
+    "value": "\\S",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitHubRepository/properties/name",
+    "keyword": "pattern",
+    "value": "^[A-Za-z0-9_][A-Za-z0-9_.-]{0,99}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitHubRepository/properties/owner",
+    "keyword": "pattern",
+    "value": "^[A-Za-z0-9][A-Za-z0-9-]{0,99}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitHubRepository/properties/repository_id",
+    "keyword": "pattern",
+    "value": "^[1-9][0-9]{0,19}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitRepository",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitRepository",
+    "keyword": "required",
+    "value": [
+      "path",
+      "completion_ref"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitRepository/properties/completion_ref",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitRepository/properties/completion_ref",
+    "keyword": "maxLength",
+    "value": 1024,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitRepository/properties/completion_ref",
+    "keyword": "pattern",
+    "value": "^refs/(heads|remotes)/.+$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitRepository/properties/path",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGitRepository/properties/path",
+    "keyword": "maxLength",
+    "value": 4096,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainGoal",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainHld",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainHld",
+    "keyword": "required",
+    "value": [
+      "title",
+      "description",
+      "revision"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainInteractionDiagram",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue",
+    "keyword": "required",
+    "value": [
+      "title",
+      "description"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/acceptance_criteria",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/criteria",
+    "keyword": "minItems",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/criteria",
+    "keyword": "maxItems",
+    "value": 100,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/evidence",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/id",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/id",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/kind",
+    "keyword": "enum",
+    "value": [
+      "phase",
+      "task",
+      "issue",
+      "wiki"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/owner",
+    "keyword": "maxLength",
+    "value": 1000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/phase",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/priority",
+    "keyword": "enum",
+    "value": [
+      "low",
+      "normal",
+      "high",
+      "urgent"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/status",
+    "keyword": "enum",
+    "value": [
+      "backlog",
+      "active",
+      "blocked",
+      "done",
+      "archived"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainIssue/properties/todos",
+    "keyword": "maxItems",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainLld",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainLld",
+    "keyword": "required",
+    "value": [
+      "title",
+      "description",
+      "revision"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPersona",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPersona",
+    "keyword": "required",
+    "value": [
+      "title",
+      "instructions"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase",
+    "keyword": "required",
+    "value": [
+      "title"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/acceptance_criteria",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/evidence",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/id",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/id",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/kind",
+    "keyword": "enum",
+    "value": [
+      "phase",
+      "task",
+      "issue",
+      "wiki"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/owner",
+    "keyword": "maxLength",
+    "value": 1000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/phase",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/priority",
+    "keyword": "enum",
+    "value": [
+      "low",
+      "normal",
+      "high",
+      "urgent"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/status",
+    "keyword": "enum",
+    "value": [
+      "backlog",
+      "active",
+      "blocked",
+      "done",
+      "archived"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPhase/properties/todos",
+    "keyword": "maxItems",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPlan",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPrd",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainPrd",
+    "keyword": "required",
+    "value": [
+      "title",
+      "description",
+      "revision"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainProject",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainProject",
+    "keyword": "required",
+    "value": [
+      "name"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainProject/properties/schema_version",
+    "keyword": "minimum",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference",
+    "keyword": "required",
+    "value": [
+      "item_type",
+      "title",
+      "authors",
+      "publication",
+      "published",
+      "abstract_text",
+      "url",
+      "pdf_url",
+      "accessed",
+      "tags",
+      "reading_status",
+      "notes"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference/properties/abstract_text",
+    "keyword": "maxLength",
+    "value": 100000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference/properties/item_type",
+    "keyword": "enum",
+    "value": [
+      "journal_article",
+      "conference_paper",
+      "preprint",
+      "book",
+      "webpage",
+      "report"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference/properties/notes",
+    "keyword": "maxLength",
+    "value": 100000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference/properties/pdf_url",
+    "keyword": "maxLength",
+    "value": 4096,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference/properties/reading_status",
+    "keyword": "enum",
+    "value": [
+      "unread",
+      "reading",
+      "read"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference/properties/title",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference/properties/title",
+    "keyword": "maxLength",
+    "value": 1000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference/properties/title",
+    "keyword": "pattern",
+    "value": "\\S",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainReference/properties/url",
+    "keyword": "maxLength",
+    "value": 4096,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainRelease",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainRelease",
+    "keyword": "required",
+    "value": [
+      "title",
+      "status"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainRelease/properties/git_tag",
+    "keyword": "maxLength",
+    "value": 1024,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainRelease/properties/release_notes",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainRelease/properties/status",
+    "keyword": "enum",
+    "value": [
+      "backlog",
+      "active",
+      "blocked",
+      "done",
+      "archived"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainResearch",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainResearchLink",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainResearchLink",
+    "keyword": "required",
+    "value": [
+      "title",
+      "url"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainResearchLink/properties/url",
+    "keyword": "maxLength",
+    "value": 4096,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainResearchLink/properties/url",
+    "keyword": "pattern",
+    "value": "^https?://[^\\s/?#]+(?:[/?#][^\\s]*)?$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainSecret",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainSecret",
+    "keyword": "required",
+    "value": [
+      "encrypted_data"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainSkill",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainSkill",
+    "keyword": "required",
+    "value": [
+      "title",
+      "instructions"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainStep",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainStep",
+    "keyword": "required",
+    "value": [
+      "title",
+      "description",
+      "criteria",
+      "implementation"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainStep/properties/criteria",
+    "keyword": "minItems",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainStep/properties/criteria",
+    "keyword": "maxItems",
+    "value": 100,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainStrings",
+    "keyword": "maxItems",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainStrings/items",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainStrings/items",
+    "keyword": "maxLength",
+    "value": 1000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainStrings/items",
+    "keyword": "pattern",
+    "value": "\\S",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask",
+    "keyword": "required",
+    "value": [
+      "title",
+      "description"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/acceptance_criteria",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/criteria",
+    "keyword": "minItems",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/criteria",
+    "keyword": "maxItems",
+    "value": 100,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/evidence",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/id",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/id",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/kind",
+    "keyword": "enum",
+    "value": [
+      "phase",
+      "task",
+      "issue",
+      "wiki"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/owner",
+    "keyword": "maxLength",
+    "value": 1000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/phase",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/priority",
+    "keyword": "enum",
+    "value": [
+      "low",
+      "normal",
+      "high",
+      "urgent"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/status",
+    "keyword": "enum",
+    "value": [
+      "backlog",
+      "active",
+      "blocked",
+      "done",
+      "archived"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTask/properties/todos",
+    "keyword": "maxItems",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTeam",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainText",
+    "keyword": "maxLength",
+    "value": 1000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTitle",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTitle",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTitle",
+    "keyword": "pattern",
+    "value": "\\S",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTodo",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTodo",
+    "keyword": "required",
+    "value": [
+      "id",
+      "title",
+      "status",
+      "evidence"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTodo/properties/acceptance_criteria",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTodo/properties/description",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTodo/properties/evidence",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTodo/properties/id",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTodo/properties/id",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainTodo/properties/status",
+    "keyword": "enum",
+    "value": [
+      "backlog",
+      "active",
+      "blocked",
+      "done"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainVerificationProvenance",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainVerificationProvenance",
+    "keyword": "required",
+    "value": [
+      "reporter",
+      "method",
+      "recorded_at"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainVerificationProvenance/properties/recorded_at",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainVerificationProvenance/properties/recorded_at",
+    "keyword": "maxLength",
+    "value": 64,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainVerificationReport",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainVerificationReport",
+    "keyword": "required",
+    "value": [
+      "basis",
+      "results",
+      "provenance"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainVerificationReport/properties/basis",
+    "keyword": "pattern",
+    "value": "^[0-9a-f]{64}$",
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainVerificationReport/properties/results",
+    "keyword": "minItems",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainVerificationReport/properties/results",
+    "keyword": "maxItems",
+    "value": 100,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/acceptance_criteria",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/evidence",
+    "keyword": "maxLength",
+    "value": 20000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/id",
+    "keyword": "minLength",
+    "value": 1,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/id",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/kind",
+    "keyword": "enum",
+    "value": [
+      "phase",
+      "task",
+      "issue",
+      "wiki"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/owner",
+    "keyword": "maxLength",
+    "value": 1000,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/phase",
+    "keyword": "maxLength",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/priority",
+    "keyword": "enum",
+    "value": [
+      "low",
+      "normal",
+      "high",
+      "urgent"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/status",
+    "keyword": "enum",
+    "value": [
+      "backlog",
+      "active",
+      "blocked",
+      "done",
+      "archived"
+    ],
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWiki/properties/todos",
+    "keyword": "maxItems",
+    "value": 200,
+    "enforcement": "domain-validator-required"
+  },
+  {
+    "path": "#/components/schemas/DomainWorkflow",
+    "keyword": "additionalProperties",
+    "value": false,
+    "enforcement": "domain-validator-required"
+  }
+]
