@@ -31,25 +31,34 @@
       <ul class="principles"><li>Local first</li><li>Minimal by design</li><li>Agent first. Human interpretable.</li></ul>
     </section>
     <section id="install" class="install">
-      <div class="section-heading"><h2>One command. Your workspace.</h2><span class="status">Preview / not yet published</span></div>
+      <div class="section-heading"><h2>Install Factory</h2><span id="release-status" class="status" role="status">Checking release...</span></div>
       <p>Linux x86-64 and macOS. No Node.js, Rust toolchain, or hosted Factory account required.</p>
-      <div class="command"><pre><code id="install-command">curl -fsSL --proto '=https' --tlsv1.2 https://farazshaikh.github.io/factory-dist/install.sh | bash</code></pre><button id="copy-command" type="button">Copy command</button></div>
+      <noscript><p>JavaScript is required to load current release downloads. <a href="updates/metadata/targets.json">View release metadata</a>.</p></noscript>
+      <div id="release-downloads" hidden>
+      <label for="install-platform">Platform</label>
+      <select id="install-platform">
+        <option value="aarch64-apple-darwin">macOS Apple Silicon</option>
+        <option value="x86_64-apple-darwin">macOS Intel</option>
+        <option value="x86_64-unknown-linux-gnu">Linux x86-64</option>
+      </select>
+      <p class="fine-print">Download the archive and install descriptor for your platform into the same directory, then run these commands there in bash.</p>
+      <div class="command"><pre><code id="install-command"></code></pre><button id="copy-command" type="button" disabled title="Copy install commands" aria-label="Copy install commands">&#x2398;</button></div>
       <p id="copy-status" role="status" aria-live="polite"></p>
-      <p class="fine-print">The command becomes available when the public release and this site are published.
-        <a href="install.sh">Inspect the installer</a> before running it.
-        Downloads are verified against release SHA-256 checksums; no sudo is used.</p>
+      <p class="fine-print">First installation is an explicit unverified bootstrap: accept the download origin before running the binary. The browser does not verify publisher signatures.
+        Existing managed installations should use <code>factory update check</code>, <code>factory update stage</code> and <code>factory update apply</code> for signed updates. No sudo is used.</p>
       <details><summary>Start a project</summary><pre><code>export PATH="$HOME/.local/bin:$PATH"
 cd /path/to/your/project
 factory init --name "My Project"
 factory serve web</code></pre><p>Open <a href="http://127.0.0.1:44440/workspace">localhost:44440/workspace</a> after starting Factory.</p></details>
       <h3>Packages</h3>
       <div class="table-scroll"><table><thead><tr><th>Platform</th><th>Architecture</th><th>Package</th></tr></thead><tbody>
-        <tr><td>Linux</td><td>x86-64 / glibc 2.35+</td><td><a href="https://github.com/farazshaikh/factory-dist/releases/latest/download/factory-x86_64-unknown-linux-gnu.tar.gz">Download .tar.gz</a></td></tr>
-        <tr><td>macOS 12+</td><td>Apple Silicon</td><td><a href="https://github.com/farazshaikh/factory-dist/releases/latest/download/factory-aarch64-apple-darwin.tar.gz">Download .tar.gz</a></td></tr>
-        <tr><td>macOS 12+</td><td>Intel</td><td><a href="https://github.com/farazshaikh/factory-dist/releases/latest/download/factory-x86_64-apple-darwin.tar.gz">Download .tar.gz</a></td></tr>
+        <tr><td>Linux</td><td>x86-64 / glibc 2.35+</td><td><a data-archive="x86_64-unknown-linux-gnu">Archive</a> / <a data-descriptor="x86_64-unknown-linux-gnu">Install descriptor</a></td></tr>
+        <tr><td>macOS 12+</td><td>Apple Silicon</td><td><a data-archive="aarch64-apple-darwin">Archive</a> / <a data-descriptor="aarch64-apple-darwin">Install descriptor</a></td></tr>
+        <tr><td>macOS 12+</td><td>Intel</td><td><a data-archive="x86_64-apple-darwin">Archive</a> / <a data-descriptor="x86_64-apple-darwin">Install descriptor</a></td></tr>
       </tbody></table></div>
-      <p class="fine-print">Release candidates are not Apple-notarized. macOS may require explicit approval in Privacy &amp; Security.
-        <a href="https://github.com/farazshaikh/factory-dist/releases/latest/download/SHA256SUMS">Release checksums</a></p>
+      <p class="fine-print">These packages are not Apple-notarized. macOS may require explicit approval in Privacy &amp; Security.
+        <a href="updates/metadata/targets.json">TUF target hashes and signatures</a></p>
+      </div>
     </section>
     <section class="in-action"><div class="section-heading"><h2>Factory in action</h2><span>Research / planning / execution</span></div>
       <img src="factory.png" alt="Factory's task workspace alongside a coding assistant in VS Code" width="2560" height="1440" loading="lazy">
