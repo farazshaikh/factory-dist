@@ -50,7 +50,7 @@ async function loadRelease() {
     const updateCommand = () => {
       const manifest = manifests.find(item => item.target === selection.value);
       if (!manifest) return;
-      document.getElementById("manual-install-command").textContent = `tar -xzf '${manifest.archive}'\n./factory-${manifest.target}/bin/factory update install --unverified \\\n  --package '${manifest.archive}' \\\n  --manifest '${manifest.archive}.json'`;
+      document.getElementById("manual-install-command").textContent = `tar -xzf '${manifest.archive}'\n./factory-${manifest.target}/bin/factory update install \\\n  --package '${manifest.archive}' \\\n  --manifest '${manifest.archive}.json'`;
     };
     selection.addEventListener("change", updateCommand);
     updateCommand();

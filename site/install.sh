@@ -18,7 +18,7 @@ main() (
   while [[ $# -gt 0 ]]; do
     case "$1" in
       --version) [[ $# -ge 2 ]] || fail 'Missing --version value'; version=$2; shift 2 ;;
-      --help) printf 'Usage: bash install.sh [--version SEMVER]\nEnvironment: FACTORY_RELEASE_REPO, FACTORY_INSTALL_ROOT, FACTORY_BIN_DIR\nInitial bootstrap trusts this HTTPS origin; subsequent updates verify publisher signatures.\n'; return ;;
+      --help) printf 'Usage: bash install.sh [--version SEMVER]\nEnvironment: FACTORY_RELEASE_REPO, FACTORY_INSTALL_ROOT, FACTORY_BIN_DIR\nRequires OpenSSL RSA-PSS support. Verifies publisher signature before executing the binary, then checks current TUF metadata.\n'; return ;;
       *) fail "Unknown argument: $1" ;;
     esac
   done
@@ -26,7 +26,7 @@ main() (
   stable_pattern='^[0-9]+\.[0-9]+\.[0-9]+([+][a-zA-Z0-9.-]+)?$'
   [[ "$version" == latest || "$version" =~ $stable_pattern ]] || fail 'Version must be a stable SemVer, not a release tag'
   [[ "$install_root" == /* && "$bin_dir" == /* ]] || fail 'Install directories must be absolute paths'
-  for utility in curl tar mktemp uname awk; do command -v "$utility" >/dev/null || fail "Required command missing: $utility"; done
+  for utility in curl tar mktemp uname awk openssl; do command -v "$utility" >/dev/null || fail "Required command missing: $utility"; done
   case "$(uname -s)/$(uname -m)" in
     Linux/x86_64) target=x86_64-unknown-linux-gnu ;;
     Darwin/arm64|Darwin/aarch64) target=aarch64-apple-darwin ;;
@@ -65,12 +65,23 @@ main() (
   package="factory-$target"
   archive="factory-$selected-$target.tar.gz"
   printf 'Downloading Factory %s for %s.\n' "$selected" "$target"
-  printf 'Initial bootstrap trusts the HTTPS download origin; SHA-256 detects corruption, not publisher identity.\n' >&2
   download "$base/targets/$archive" "$work/$archive" 536870912
   download "$base/install/$selected-$target.json" "$work/descriptor.json" 65536
   if [[ "$checksum_tool" == sha256sum ]]; then actual=$(sha256sum "$work/$archive")
   else actual=$(shasum -a 256 "$work/$archive"); fi
   [[ "${actual%% *}" == "$expected" ]] || fail 'Package checksum mismatch; nothing installed'
+  download "$base/targets/publisher.pem" "$work/publisher.pem" 16384
+  download "$base/targets/$archive.sig" "$work/archive.sig" 1024
+  openssl pkey -pubin -in "$work/publisher.pem" -outform DER -out "$work/publisher.der" \
+    || fail 'OpenSSL cannot decode publisher key'
+  if [[ "$checksum_tool" == sha256sum ]]; then public_hash=$(sha256sum "$work/publisher.der")
+  else public_hash=$(shasum -a 256 "$work/publisher.der"); fi
+  [[ "${public_hash%% *}" == 80d4d6cf32c2dfbd7a4558881997602a8a062ab28faa0a98429dcb3093e7befb ]] \
+    || fail 'Publisher key does not match the pinned signing identity; nothing installed'
+  openssl dgst -sha256 -verify "$work/publisher.pem" -signature "$work/archive.sig" \
+    -sigopt rsa_padding_mode:pss -sigopt rsa_pss_saltlen:32 -sigopt rsa_mgf1_md:sha256 "$work/$archive" \
+    || fail 'Publisher signature verification failed; nothing installed'
+  printf 'Publisher signature verified. Checking current signed release metadata during installation.\n'
   tar -tzf "$work/$archive" > "$work/entries"
   awk -v root="$package" '
     $0 != root && index($0, root "/") != 1 { exit 1 }
@@ -83,7 +94,7 @@ main() (
   [[ -s "$work/factory" ]] || fail 'Missing Factory executable'
   chmod 700 "$work/factory"
   FACTORY_INSTALL_ROOT="$install_root" FACTORY_BIN_DIR="$bin_dir" \
-    "$work/factory" update install --unverified --package "$work/$archive" --manifest "$work/descriptor.json"
+    "$work/factory" update install --package "$work/$archive" --manifest "$work/descriptor.json"
   [[ -L "$bin_dir/factory" && -x "$bin_dir/factory" ]] || fail 'Installer did not create the managed executable'
   printf '\nFactory installed at %s\n' "$bin_dir/factory"
   case ":$PATH:" in
