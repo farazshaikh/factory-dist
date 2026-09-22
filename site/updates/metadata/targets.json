@@ -2,49 +2,37 @@
   "signed": {
     "_type": "targets",
     "spec_version": "1.0.0",
-    "version": 2,
-    "expires": "2026-09-29T08:19:47.491189Z",
+    "version": 3,
+    "expires": "2026-09-29T15:16:11.438910Z",
     "targets": {
-      "factory-0.2.2-aarch64-apple-darwin.tar.gz.sig": {
+      "factory-0.2.3-x86_64-unknown-linux-gnu.tar.gz.sig": {
         "length": 384,
         "hashes": {
-          "sha256": "76e2ad0891161eb76c2525508657e43427da0a91446fc167ad703b127dac3e62"
+          "sha256": "dc0165ee0042010fe7ab405fa1850819ad955a285c319c6ee6cfe93ae79ecd88"
         }
       },
-      "factory-0.2.2-x86_64-apple-darwin.tar.gz": {
-        "length": 52660403,
+      "factory-0.2.3-x86_64-unknown-linux-gnu.tar.gz": {
+        "length": 53353529,
         "hashes": {
-          "sha256": "2366534a54c8a86cae0f93c2e2ce73b183e35ad30d9f53432fe8a8bbe401ef1e"
-        }
-      },
-      "factory-0.2.2-x86_64-unknown-linux-gnu.tar.gz": {
-        "length": 52860169,
-        "hashes": {
-          "sha256": "040d2648673d0fe9d58e0473777625c19b86613094e55e1f78d0f1b3906fc59e"
-        }
-      },
-      "factory-0.2.2-aarch64-apple-darwin.tar.gz": {
-        "length": 52086690,
-        "hashes": {
-          "sha256": "867709f9558eb52b962f6a408755464dbcef7e6907119ce088ea1ef8c1869e38"
+          "sha256": "1535a6cda00220ee4b8da5796ee6936382b02787121cedaad42de399f91f989d"
         }
       },
       "stable-aarch64-apple-darwin.json": {
         "length": 221,
         "hashes": {
-          "sha256": "560a650f2f58108435b463307289055dfcfb6487a697cf4ece8b3091ca6cb073"
+          "sha256": "eb68f4d077d0ac5d7a1c1266c106a405942fa8c0874c9bac4f11498f77220224"
+        }
+      },
+      "factory-0.2.3-aarch64-apple-darwin.tar.gz": {
+        "length": 52589516,
+        "hashes": {
+          "sha256": "7541e339d118c64c8945824d6bc4dbf96b5824e207dc0e0e330bb41cf940f095"
         }
       },
       "stable-x86_64-unknown-linux-gnu.json": {
         "length": 229,
         "hashes": {
-          "sha256": "0ca7b0c6dcba5fa1534e205c6de491a405893d5933fe17d9783969c69df96217"
-        }
-      },
-      "stable-x86_64-apple-darwin.json": {
-        "length": 219,
-        "hashes": {
-          "sha256": "c9e61883bb85d72e39df8e41fb1ec0983cf00a33ab160590e6cb00e4f5ab9bf7"
+          "sha256": "fd5fc46b511afeeff6d51e3171cbf0b85f5b608cdfec5cfc65ed610cf1b25afd"
         }
       },
       "publisher.pem": {
@@ -53,16 +41,28 @@
           "sha256": "ba3fc6fd35aa00f0a53e81d892c4c0058b0bd1857ba1778a6a9ce50c41c410a7"
         }
       },
-      "factory-0.2.2-x86_64-unknown-linux-gnu.tar.gz.sig": {
-        "length": 384,
+      "stable-x86_64-apple-darwin.json": {
+        "length": 219,
         "hashes": {
-          "sha256": "21e4256ede911d7863a1dc300f8934d49f5603f72da162e53385867be5e0bf6d"
+          "sha256": "3ca716bf52c8c0a4b13b9fa68cf80a5879b66515ee8cf3d8500a1c91501736f3"
         }
       },
-      "factory-0.2.2-x86_64-apple-darwin.tar.gz.sig": {
+      "factory-0.2.3-x86_64-apple-darwin.tar.gz.sig": {
         "length": 384,
         "hashes": {
-          "sha256": "1ee2899aea1f844efe0f47315279a4172a44bfe286dcc5fac2217d48b61929e7"
+          "sha256": "f33d1c85827a9b32da27df954dcb8cf3e038865cc89df23c6c6b385cad373f44"
+        }
+      },
+      "factory-0.2.3-x86_64-apple-darwin.tar.gz": {
+        "length": 53162243,
+        "hashes": {
+          "sha256": "8390625aedc3dacfd19ca240b94070d4e433b55516276f7490600820ab61e98f"
+        }
+      },
+      "factory-0.2.3-aarch64-apple-darwin.tar.gz.sig": {
+        "length": 384,
+        "hashes": {
+          "sha256": "fdf43d74f11a7c3cae8ac2abfd2b9fa16613d9e859802f3a21b8314b171bb808"
         }
       }
     },
@@ -74,7 +74,7 @@
   "signatures": [
     {
       "keyid": "d72748fbe32099b5590fc757b8a082cad647db808d0829a68f1a5688e7263ed8",
-      "sig": "b0eb5944824a75fecb3d6898112a9e61e7fff11e02a8f2cc1413e7045ee6a052d32c4b6819c6e81f881c0430046e61560f03e94c486ba9fe2b1e1e8284d1965beaf51d08e3d15da27c0329349c58b90f6fe34249a6ca01e9f22dffe65a028c568a193c004039669c9570f6bca786e3393a185ea8abb56846d87b1a6c92dffc1dfed3593e5392b2f8be377fa3b23d2098b57f45d52bedf9c1c353c3e0defa07ac1ea5363fda97f0a62ce2dc459aba5cfbff3085d705851a31c25baeca57bcb2d6dd6d6410ff2d0c149cc82b53cc5a7d2b422460f9608d55e39c456d82a48d54e1407bb1c7d73ce4a3a0f4d5b3d8f71b93a5ad7a99f2868500a7ca79fbf9dcabacc13236273b057ec23f6b15255923f1b331709e845bd0166ed01a209dd8d431ad2510fb46af33d2e6dde16f75349a156766c6850de5d54ce916b7ca8bb48bc991c99038d52dae9f3b31a1e71875af2d9ef316fec2f57842e3010284b9181921784923f62a07c6ee2f0d2eb1ede1354b7128836d69a26c6d1df11432ab0fa8a9df"
+      "sig": "ad6f64280e1233800c0090cf04313cbf9d1d04b85462b12e4b1e1a643de07514a9404d72f0286866773f0bb5e801460bb52cb81a6d6a92816937734a923d0123e88bfbcdba0490b0c3f817f58f312833e2202b8b9e467d0ced1d148fc517e9adbee875a679d290603cac5c065e466b5492b1e23187bd0c9ea7a0c6c2b13765165ae46f97240b4cc973c8173ffafa1fef3db454366e826da980cf4d0794d929466337e3a6dbde981aa61f8b15c782b3947b1c07f6ac15b3b246455c788e95f86b811621a358c1686db79fe28f6a958ef54170b26b2274cadefe767718d8f771decd618dccbaac6ba2bd4eede04e9fa69044f90b622a836f4744ed7f6404860f444a228c6a486ec1882512a2d61e2342677ddd3c051968bf4efe064e54d1d1e2f15b543423bcd4f78f31f0a869fa05fa39855c26d6b5e7db0b42674047b79cef908052cec654c7cc1273e2fc8e603d114082f16c563539bd332f96a26b3bf446b27817fe835edf5c77b299cc48be7a51c1973707470e44cd6df53a3e2873077330"
     }
   ]
 }
