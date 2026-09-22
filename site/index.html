@@ -35,6 +35,12 @@
       <p>Linux x86-64 and macOS. No Node.js, Rust toolchain, or hosted Factory account required.</p>
       <noscript><p>JavaScript is required to load current release downloads. <a href="updates/metadata/targets.json">View release metadata</a>.</p></noscript>
       <div id="release-downloads" hidden>
+      <div class="command"><pre><code id="install-command">curl -fsSL --proto '=https' --tlsv1.2 https://farazshaikh.github.io/factory-dist/install.sh | bash</code></pre><button id="copy-command" type="button" disabled title="Copy install commands" aria-label="Copy install commands">&#x2398;</button></div>
+      <p id="copy-status" role="status" aria-live="polite"></p>
+      <p class="fine-print"><a href="install.sh">Inspect the installer</a> before running it. It selects your platform automatically; no sudo, Node.js or Rust is required.
+        Initial installation trusts this HTTPS origin and is recorded as unverified; checksums detect corruption, not publisher identity.
+        Existing managed installations use signed update staging and are not restarted.</p>
+      <details><summary>Manual installation</summary>
       <label for="install-platform">Platform</label>
       <select id="install-platform">
         <option value="aarch64-apple-darwin">macOS Apple Silicon</option>
@@ -42,10 +48,10 @@
         <option value="x86_64-unknown-linux-gnu">Linux x86-64</option>
       </select>
       <p class="fine-print">Download the archive and install descriptor for your platform into the same directory, then run these commands there in bash.</p>
-      <div class="command"><pre><code id="install-command"></code></pre><button id="copy-command" type="button" disabled title="Copy install commands" aria-label="Copy install commands">&#x2398;</button></div>
-      <p id="copy-status" role="status" aria-live="polite"></p>
+      <pre><code id="manual-install-command"></code></pre>
       <p class="fine-print">First installation is an explicit unverified bootstrap: accept the download origin before running the binary. The browser does not verify publisher signatures.
         Existing managed installations should use <code>factory update check</code>, <code>factory update stage</code> and <code>factory update apply</code> for signed updates. No sudo is used.</p>
+      </details>
       <details><summary>Start a project</summary><pre><code>export PATH="$HOME/.local/bin:$PATH"
 cd /path/to/your/project
 factory init --name "My Project"

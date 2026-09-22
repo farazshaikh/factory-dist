@@ -1,0 +1,11 @@
+{
+  "manifest": {
+    "version": "0.2.0",
+    "source_commit": "22a80659d44750bea4bc29900a7e7b095463a9d3",
+    "target": "aarch64-apple-darwin",
+    "archive": "factory-0.2.0-aarch64-apple-darwin.tar.gz",
+    "storage_min": 1,
+    "storage_max": 1
+  },
+  "path": "factory-0.2.0-aarch64-apple-darwin.tar.gz"
+}
