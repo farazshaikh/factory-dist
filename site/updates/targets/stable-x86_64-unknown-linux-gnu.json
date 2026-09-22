@@ -1,8 +1,8 @@
 {
-  "version": "0.2.0",
-  "source_commit": "22a80659d44750bea4bc29900a7e7b095463a9d3",
+  "version": "0.2.2",
+  "source_commit": "18274f23058463d1b5dfa552ac9fae5967500e09",
   "target": "x86_64-unknown-linux-gnu",
-  "archive": "factory-0.2.0-x86_64-unknown-linux-gnu.tar.gz",
+  "archive": "factory-0.2.2-x86_64-unknown-linux-gnu.tar.gz",
   "storage_min": 1,
   "storage_max": 1
 }

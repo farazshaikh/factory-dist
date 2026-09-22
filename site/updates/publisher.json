@@ -1,5 +1,5 @@
 {
-  "metadata_version": 1,
+  "metadata_version": 2,
   "releases": [
     {
       "tag": "release0.2",
@@ -9,6 +9,16 @@
         "aarch64-apple-darwin": "8448ec382c860f91e5c4a0e82f7596a20d846cfa0f81b8c9461072da585df1e0",
         "x86_64-apple-darwin": "b319fe4d8fe50d93c7f4c84c4e1d349d625cf6918a071492afc7bf2b8da2fe97",
         "x86_64-unknown-linux-gnu": "46cd20c09aafec92612e3386799b85b8475c6d19b9ad658cb86665c5321e87b7"
+      }
+    },
+    {
+      "tag": "release0.2.2-local.1",
+      "commit": "18274f23058463d1b5dfa552ac9fae5967500e09",
+      "version": "0.2.2",
+      "archives": {
+        "aarch64-apple-darwin": "867709f9558eb52b962f6a408755464dbcef7e6907119ce088ea1ef8c1869e38",
+        "x86_64-apple-darwin": "2366534a54c8a86cae0f93c2e2ce73b183e35ad30d9f53432fe8a8bbe401ef1e",
+        "x86_64-unknown-linux-gnu": "040d2648673d0fe9d58e0473777625c19b86613094e55e1f78d0f1b3906fc59e"
       }
     }
   ]

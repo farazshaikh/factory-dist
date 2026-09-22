@@ -2,43 +2,67 @@
   "signed": {
     "_type": "targets",
     "spec_version": "1.0.0",
-    "version": 1,
-    "expires": "2026-09-29T01:47:11.369160Z",
+    "version": 2,
+    "expires": "2026-09-29T08:19:47.491189Z",
     "targets": {
-      "stable-x86_64-unknown-linux-gnu.json": {
-        "length": 229,
+      "factory-0.2.2-aarch64-apple-darwin.tar.gz.sig": {
+        "length": 384,
         "hashes": {
-          "sha256": "286167b1cc6dc351ad681549db176dd2b23e585218855b7782a5378571474299"
+          "sha256": "76e2ad0891161eb76c2525508657e43427da0a91446fc167ad703b127dac3e62"
         }
       },
-      "factory-0.2.0-x86_64-apple-darwin.tar.gz": {
-        "length": 12052466,
+      "factory-0.2.2-x86_64-apple-darwin.tar.gz": {
+        "length": 52660403,
         "hashes": {
-          "sha256": "b319fe4d8fe50d93c7f4c84c4e1d349d625cf6918a071492afc7bf2b8da2fe97"
+          "sha256": "2366534a54c8a86cae0f93c2e2ce73b183e35ad30d9f53432fe8a8bbe401ef1e"
         }
       },
-      "stable-x86_64-apple-darwin.json": {
-        "length": 219,
+      "factory-0.2.2-x86_64-unknown-linux-gnu.tar.gz": {
+        "length": 52860169,
         "hashes": {
-          "sha256": "92bd6fafc70caa36a582219f5afd089a6c1be411691bafb2f4da6bfda1abe23e"
+          "sha256": "040d2648673d0fe9d58e0473777625c19b86613094e55e1f78d0f1b3906fc59e"
+        }
+      },
+      "factory-0.2.2-aarch64-apple-darwin.tar.gz": {
+        "length": 52086690,
+        "hashes": {
+          "sha256": "867709f9558eb52b962f6a408755464dbcef7e6907119ce088ea1ef8c1869e38"
         }
       },
       "stable-aarch64-apple-darwin.json": {
         "length": 221,
         "hashes": {
-          "sha256": "661999979ccdf0ea6b670c1cbfc73d992238fe1d31c6038d7dd12dbf5aa88d8e"
+          "sha256": "560a650f2f58108435b463307289055dfcfb6487a697cf4ece8b3091ca6cb073"
         }
       },
-      "factory-0.2.0-x86_64-unknown-linux-gnu.tar.gz": {
-        "length": 12337364,
+      "stable-x86_64-unknown-linux-gnu.json": {
+        "length": 229,
         "hashes": {
-          "sha256": "46cd20c09aafec92612e3386799b85b8475c6d19b9ad658cb86665c5321e87b7"
+          "sha256": "0ca7b0c6dcba5fa1534e205c6de491a405893d5933fe17d9783969c69df96217"
         }
       },
-      "factory-0.2.0-aarch64-apple-darwin.tar.gz": {
-        "length": 11483738,
+      "stable-x86_64-apple-darwin.json": {
+        "length": 219,
         "hashes": {
-          "sha256": "8448ec382c860f91e5c4a0e82f7596a20d846cfa0f81b8c9461072da585df1e0"
+          "sha256": "c9e61883bb85d72e39df8e41fb1ec0983cf00a33ab160590e6cb00e4f5ab9bf7"
+        }
+      },
+      "publisher.pem": {
+        "length": 625,
+        "hashes": {
+          "sha256": "ba3fc6fd35aa00f0a53e81d892c4c0058b0bd1857ba1778a6a9ce50c41c410a7"
+        }
+      },
+      "factory-0.2.2-x86_64-unknown-linux-gnu.tar.gz.sig": {
+        "length": 384,
+        "hashes": {
+          "sha256": "21e4256ede911d7863a1dc300f8934d49f5603f72da162e53385867be5e0bf6d"
+        }
+      },
+      "factory-0.2.2-x86_64-apple-darwin.tar.gz.sig": {
+        "length": 384,
+        "hashes": {
+          "sha256": "1ee2899aea1f844efe0f47315279a4172a44bfe286dcc5fac2217d48b61929e7"
         }
       }
     },
@@ -50,7 +74,7 @@
   "signatures": [
     {
       "keyid": "d72748fbe32099b5590fc757b8a082cad647db808d0829a68f1a5688e7263ed8",
-      "sig": "7885cb108d7dd56e983539e0d1c80fb7628ca9352d2f4c8ecfc561748e0e046b37c082fcc4e6ba495774b51f1d9ffb493c7ddfd243762bd67564a2985e3bce9368bc1368a82b7853eba19400f40ba665d592265e09b444d12d5c27f7162c9859647b10be1b6dae49b1d01500aa559059f678b6c02afe260b62ec7c3df75e8ece6f0b8144c0292ece4f5b4746881fa6bdd3c6451d5ff713adb451aee582f1d46b100ffca5b032155a9846eb3a2a6b9395986f958856f7858e156a805486f0f561b3b379aad20476a2ea3bc3d76b6f10ded9f8210d35dac909caab070dee75430dcce03c2c118364ac4332ddef69f147176684595ec06d8fc1546de1279ddadf67758217156747ee3bfdfaf718e66fcc55764f1016221f2610bf538d5908824c98efa3f4716e2cf017c83ebf6d375b901df560c81151f18379d7428dc1b7029fcd9fb51c554a13a0b2dd1bec5ec285473aa2ea3e27cfe9876d9d5be56581eedea71ef43e5fdbd8f9d5ec7558311e25486a853f7457538a54f3bbba08df00ee3669"
+      "sig": "b0eb5944824a75fecb3d6898112a9e61e7fff11e02a8f2cc1413e7045ee6a052d32c4b6819c6e81f881c0430046e61560f03e94c486ba9fe2b1e1e8284d1965beaf51d08e3d15da27c0329349c58b90f6fe34249a6ca01e9f22dffe65a028c568a193c004039669c9570f6bca786e3393a185ea8abb56846d87b1a6c92dffc1dfed3593e5392b2f8be377fa3b23d2098b57f45d52bedf9c1c353c3e0defa07ac1ea5363fda97f0a62ce2dc459aba5cfbff3085d705851a31c25baeca57bcb2d6dd6d6410ff2d0c149cc82b53cc5a7d2b422460f9608d55e39c456d82a48d54e1407bb1c7d73ce4a3a0f4d5b3d8f71b93a5ad7a99f2868500a7ca79fbf9dcabacc13236273b057ec23f6b15255923f1b331709e845bd0166ed01a209dd8d431ad2510fb46af33d2e6dde16f75349a156766c6850de5d54ce916b7ca8bb48bc991c99038d52dae9f3b31a1e71875af2d9ef316fec2f57842e3010284b9181921784923f62a07c6ee2f0d2eb1ede1354b7128836d69a26c6d1df11432ab0fa8a9df"
     }
   ]
 }
