@@ -1,0 +1,15 @@
+{
+  "metadata_version": 1,
+  "releases": [
+    {
+      "tag": "release0.2",
+      "commit": "22a80659d44750bea4bc29900a7e7b095463a9d3",
+      "version": "0.2.0",
+      "archives": {
+        "aarch64-apple-darwin": "8448ec382c860f91e5c4a0e82f7596a20d846cfa0f81b8c9461072da585df1e0",
+        "x86_64-apple-darwin": "b319fe4d8fe50d93c7f4c84c4e1d349d625cf6918a071492afc7bf2b8da2fe97",
+        "x86_64-unknown-linux-gnu": "46cd20c09aafec92612e3386799b85b8475c6d19b9ad658cb86665c5321e87b7"
+      }
+    }
+  ]
+}

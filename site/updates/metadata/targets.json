@@ -1,0 +1,56 @@
+{
+  "signed": {
+    "_type": "targets",
+    "spec_version": "1.0.0",
+    "version": 1,
+    "expires": "2026-09-29T01:47:11.369160Z",
+    "targets": {
+      "stable-x86_64-unknown-linux-gnu.json": {
+        "length": 229,
+        "hashes": {
+          "sha256": "286167b1cc6dc351ad681549db176dd2b23e585218855b7782a5378571474299"
+        }
+      },
+      "factory-0.2.0-x86_64-apple-darwin.tar.gz": {
+        "length": 12052466,
+        "hashes": {
+          "sha256": "b319fe4d8fe50d93c7f4c84c4e1d349d625cf6918a071492afc7bf2b8da2fe97"
+        }
+      },
+      "stable-x86_64-apple-darwin.json": {
+        "length": 219,
+        "hashes": {
+          "sha256": "92bd6fafc70caa36a582219f5afd089a6c1be411691bafb2f4da6bfda1abe23e"
+        }
+      },
+      "stable-aarch64-apple-darwin.json": {
+        "length": 221,
+        "hashes": {
+          "sha256": "661999979ccdf0ea6b670c1cbfc73d992238fe1d31c6038d7dd12dbf5aa88d8e"
+        }
+      },
+      "factory-0.2.0-x86_64-unknown-linux-gnu.tar.gz": {
+        "length": 12337364,
+        "hashes": {
+          "sha256": "46cd20c09aafec92612e3386799b85b8475c6d19b9ad658cb86665c5321e87b7"
+        }
+      },
+      "factory-0.2.0-aarch64-apple-darwin.tar.gz": {
+        "length": 11483738,
+        "hashes": {
+          "sha256": "8448ec382c860f91e5c4a0e82f7596a20d846cfa0f81b8c9461072da585df1e0"
+        }
+      }
+    },
+    "delegations": {
+      "keys": {},
+      "roles": []
+    }
+  },
+  "signatures": [
+    {
+      "keyid": "d72748fbe32099b5590fc757b8a082cad647db808d0829a68f1a5688e7263ed8",
+      "sig": "7885cb108d7dd56e983539e0d1c80fb7628ca9352d2f4c8ecfc561748e0e046b37c082fcc4e6ba495774b51f1d9ffb493c7ddfd243762bd67564a2985e3bce9368bc1368a82b7853eba19400f40ba665d592265e09b444d12d5c27f7162c9859647b10be1b6dae49b1d01500aa559059f678b6c02afe260b62ec7c3df75e8ece6f0b8144c0292ece4f5b4746881fa6bdd3c6451d5ff713adb451aee582f1d46b100ffca5b032155a9846eb3a2a6b9395986f958856f7858e156a805486f0f561b3b379aad20476a2ea3bc3d76b6f10ded9f8210d35dac909caab070dee75430dcce03c2c118364ac4332ddef69f147176684595ec06d8fc1546de1279ddadf67758217156747ee3bfdfaf718e66fcc55764f1016221f2610bf538d5908824c98efa3f4716e2cf017c83ebf6d375b901df560c81151f18379d7428dc1b7029fcd9fb51c554a13a0b2dd1bec5ec285473aa2ea3e27cfe9876d9d5be56581eedea71ef43e5fdbd8f9d5ec7558311e25486a853f7457538a54f3bbba08df00ee3669"
+    }
+  ]
+}
